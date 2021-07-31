@@ -6,6 +6,7 @@ from src.constant import Constant
 
 os.environ['pass_salt'] = 'RK979adL70fiEiAb/hSDG3Ii1KDBafbEV5YorsUCnKM='
 os.environ['pass_key'] = 'd3cxyyCmNjqjhtcUhQ8U4yCjCS/pWo4u8nHM6Cxm05Y='
+os.environ['secret'] = 'b2bn4coIJZUtlghYyuzf6b5x0sm8YLZzYXrGbPXOp_M='
 
 app = Flask(__name__)
 
@@ -15,7 +16,7 @@ def user_auth():
 	status_code = 500
 	try:
 		data = json.loads(request.data)
-		auth = Auth(data['password'])
+		auth = Auth(data['hash'])
 		if auth.authenticate():
 			return Constant.createResponse(200, 'aaah, you are not robot.'), 200
 		status_code = 401
