@@ -10,61 +10,49 @@ from Crypto.Cipher import AES, PKCS1_OAEP
 import pickle
 
 os.environ['secret'] = 'TXN2TE15aWZpb0l0NFZSRjM4MEMwRHNxTXY2QmF6UDdqRjhoMC1VZDhrUT0='
-os.environ['hash'] = 'hash.json'
+os.environ['cipher'] = 'hash.json'
 
 class Account:
-	def __init__(self, origin, username, password) -> None:
-			self.origin = origin
-			self.username = username
-			self.password = password
-			self.secret = base64.b64decode(bytes(os.environ['secret'], encoding='utf-8'))
-			self.fernet = Fernet(self.secret)
+	def __init__(self) -> None:
+			self.fernet  = Fernet(base64.b64decode(bytes(os.environ['secret'], encoding='utf-8')))
+			if os.stat(os.environ['cipher']).st_size > 0:
+				f = open(os.environ['cipher'], 'rb')
+				hash_data = f.read()
+				self.cipher = pickle.loads(self.fernet.decrypt(hash_data))
+				f.close()
+			else:
+				self.cipher = {}
 	
-	def create(self):
-		accounts = {}
-		hash_data = None
+	def create(self, origin, username, password):
+		# if os.stat(os.environ['master_hash']).st_size > 0:
+		# 	f = open(os.environ['master_hash'], 'rb')
+		# 	hash_data = f.read()
+		# 	accounts = pickle.loads(self.fernet.decrypt(hash_data))
+		# 	f.close()
 
-		if os.stat(os.environ['hash']).st_size > 0:
-			f = open(os.environ['hash'], 'rb')
-			hash_data = f.read()
-			accounts = json.loads(self.fernet.decrypt(hash_data))
-			f.close()
-
-		accounts[self.key_hash()] = self.encrypt_creds()
-		print(accounts)
-		encrypted = self.fernet.encrypt(pickle.dumps(accounts))
+		self.cipher[self.key_hash(origin)] = self.encrypt_creds(username, password)
+		encrypted = self.fernet.encrypt(pickle.dumps(self.cipher))
 		
-		f = open(os.environ['hash'],'wb')
-		hash_data = f.write(encrypted)
+		f = open(os.environ['cipher'],'wb')
+		f.write(encrypted)
 		f.close()
 	
-	def search(self):
-		accounts = {}
-		hash_data = None
-
-		f = open(os.environ['hash'],'rb')
-		hash_data = f.read()
-		f.close()
-		fernet = Fernet(self.secret)
-		encrypted=fernet.decrypt(hash_data)
-		print(json.loads(encrypted))
-		# f2 = open('output.json', 'wb')
-		# f2.write(encrypted)
-		# f2.close()
-
+	def search(self, origin):
+		origin_hash = self.key_hash(origin)
+		print(self.cipher[origin_hash])
 	def binary_string(self, string):
 		return ' '.join('{:08b}'.format(d) for d in bytearray(string, 'utf-8'))
 
-	def key_hash(self):
-		binary_key = self.binary_string(self.origin)
+	def key_hash(self, string):
+		binary_key = self.binary_string(string)[::-1] # reverse the binary string
 		return hashlib.sha256(binary_key.encode(encoding='UTF-8', errors='strict')).hexdigest()
 
-	def encrypt_creds(self):
+	def encrypt_creds(self, username, password):
 
-		data = (
-			self.binary_string(self.username),
-			self.binary_string(self.password)
-		)
+		data = [
+			self.binary_string(self.username)[::-1],
+			self.binary_string(self.password)[::-1]
+		]
 		recipient_key = RSA.import_key(open("receiver.pem").read())
 		session_key = get_random_bytes(16)
 		
@@ -76,10 +64,10 @@ class Account:
 		cipher_aes = AES.new(session_key, AES.MODE_EAX)
 		ciphertext, tag = cipher_aes.encrypt_and_digest(pickle.dumps(data))
 
-		return (enc_session_key, cipher_aes.nonce, tag, ciphertext)
+		return [enc_session_key, cipher_aes.nonce, tag, ciphertext]
 
 
-asd = Account('MS', 'afraz', '1234')
+asd = Account()
 # print(asd.binary_string('afraz'))
-asd.create()
-# asd.search()
+# asd.create()
+asd.search('MS')

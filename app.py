@@ -16,7 +16,7 @@ def user_auth():
 	status_code = 500
 	try:
 		data = json.loads(request.data)
-		auth = Auth(data['hash'])
+		auth = Auth(data['master_text'])
 		if auth.authenticate():
 			return Constant.createResponse(200, 'aaah, you are not robot.'), 200
 		status_code = 401

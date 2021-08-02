@@ -15,6 +15,7 @@ class Auth:
 			self.salt,
 			100000
 		)
+		print(self.salt, key, self.key)
 		if key == self.key:
 			return True
 		return False
