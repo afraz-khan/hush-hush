@@ -17,4 +17,4 @@ Every credentials object is structured as follows in the cipher text:
 You have to setup an environment variable for that secret called **secret**.
 	> NOTE: Since secret key would be most probably in bytes form so as of yet, i never found a way to store bytes as env var, so use this method here to convert secret to base64 encoded string, get the string value without **_b' '_**(it is attached with bytes values) and set that string value in the **secret** env var.
 - #### `[username, password]` Array Encryption ENVs
-	As per the structure of a credentials object [here](###Structure), `[username, password]` array is encrypted asymmetrically, so we will encrypt an array object with a **_public key_** and decrypt with respective **_private key_**. 
+	As per the structure of a credentials object [here](###structure), `[username, password]` array is encrypted asymmetrically, so we will encrypt an array object with a **_public key_** and decrypt with respective **_private key_**. 
