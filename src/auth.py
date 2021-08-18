@@ -49,7 +49,9 @@ class Auth:
     """
 		try:
 			payload = jwt.decode(auth_token, os.environ['AUTH_JWT_SECRET'], algorithms='HS256')
-			return payload['sub']
+			if(payload['sub'] == os.environ['AUTH_JWT_SUB']):
+				return payload['sub']
+			raise jwt.InvalidTokenError
 		except jwt.ExpiredSignatureError:
 			return 'Signature expired. Please log in again.'
 		except jwt.InvalidTokenError:
