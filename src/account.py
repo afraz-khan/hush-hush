@@ -9,8 +9,8 @@ from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
 import pickle
 
-os.environ['secret'] = 'TXN2TE15aWZpb0l0NFZSRjM4MEMwRHNxTXY2QmF6UDdqRjhoMC1VZDhrUT0='
-os.environ['cipher'] = 'hash.json'
+os.environ['CIPHER_SECRET'] = 'TXN2TE15aWZpb0l0NFZSRjM4MEMwRHNxTXY2QmF6UDdqRjhoMC1VZDhrUT0='
+os.environ['CIPHER'] = 'hash.json'
 
 class Account:
 	'''Handles functionality for managing your digital account credentials
@@ -20,9 +20,9 @@ class Account:
 		'''loads previous cipher text having all creds
 		'''
 		self.cipher = {} # main creds cipher
-		self.fernet  = Fernet(base64.b64decode(bytes(os.environ['secret'], encoding='utf-8')))
-		if os.stat(os.environ['cipher']).st_size > 0:
-			f = open(os.environ['cipher'], 'rb')
+		self.fernet  = Fernet(base64.b64decode(bytes(os.environ['CIPHER_SECRET'], encoding='utf-8')))
+		if os.stat(os.environ['CIPHER']).st_size > 0:
+			f = open(os.environ['CIPHER'], 'rb')
 			hash_data = f.read()
 			self.cipher = pickle.loads(self.fernet.decrypt(hash_data)) # cipher data is pickel saved
 			f.close()																									 # to bytes
@@ -35,7 +35,7 @@ class Account:
 		self.cipher[self.key_hash(origin)] = self.encrypt_creds(username, password)
 		encrypted = self.fernet.encrypt(pickle.dumps(self.cipher))
 		
-		f = open(os.environ['cipher'],'wb')
+		f = open(os.environ['CIPHER'],'wb')
 		f.write(encrypted)
 		f.close()
 	
