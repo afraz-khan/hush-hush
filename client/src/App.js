@@ -2,11 +2,12 @@ import cardano from './cardano.png';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
-import { useState } from 'react';
 import Login from './components/Login';
+import useToken from './components/useToken';
 
 function App() {
-	const [token, setToken] = useState();
+	const { token, setToken } = useToken();
+
   if(!token) {
     return <Login setToken={setToken} />
   }
