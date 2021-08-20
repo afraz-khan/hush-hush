@@ -123,3 +123,25 @@ footer li:hover {
 		margin-top: 5vw;
 	}
 }
+
+#github-icon span{
+	margin-right: 1vw;
+	color: #575757;
+}
+
+#github-icon:hover{
+	text-decoration: none;
+}
+
+@media screen and (max-width: 480px) {
+
+  .social-icon{
+    height: 2vh;
+  }
+}
+
+@media screen and (max-width: 275px) {
+  .social-icon{
+    height: 1vh;
+  }
+}

@@ -1,4 +1,4 @@
-import cardano from './cardano.png';
+import cardano from './images/cardano.png';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
