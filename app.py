@@ -4,6 +4,7 @@ import os
 
 import flask
 from src.auth import Auth
+from src.account import Account
 from src.constant import Constant
 from flask_cors import CORS
 
@@ -19,8 +20,12 @@ CORS(app)
 
 @app.before_request
 def request_authorizer():
-	if(request.path != '/auth'):
-		
+	try:
+		if(request.path != '/auth'):
+			Auth.decode_auth_token(request.headers['Authorization'])
+	except Exception as e:
+		print('ERROR', e)
+		return 'invalid_request', 403
 
 @app.route("/auth", methods=['POST'])
 def user_auth():
@@ -46,16 +51,19 @@ def user_auth():
 @app.route('/account', methods=['POST'])
 def add_account():
 	status_code = 500
+	message = ''
 	try:
 		data = json.loads(request.data)
-		data = Auth(data['username'], data['master_secret'])
-		authResult = auth.authenticate()
-		if authResult:
-			resp = flask.Response(json.dumps(Constant.createResponse(200, 'success')))
-			resp.headers['Authorization'] = authResult
-			return resp, 200
-		status_code = 401
-		raise Exception("I don't know you, acting like a robot? 🤔")
+		requiredFields = ['origin', 'username', 'password']
+		accont = Account()
+		print(data)
+		if(all(k in data.keys() for k in requiredFields)):
+			accont.create(data['origin'], data['username'], data['password'])
+			status_code = 200
+			message = 'success'
+		status_code = 400
+		message = 'invalid body'
+		return Constant.createResponse(status_code, message), status_code
 	except Exception as e:
 		print('ERROR: ' , e)
 		message = e.__str__()
@@ -63,7 +71,8 @@ def add_account():
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.createResponse(status_code, message), status_code
 
-@app.route("/auth/decode", methods=['POST'])
-def jwt_decode():
-	data = json.loads(request.data)
-	return Auth.decode_auth_token(data['token'])
+@app.route("/auth/test", methods=['POST'])
+def test():
+	return {
+		'data': 'helloe'
+	}

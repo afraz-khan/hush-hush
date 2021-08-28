@@ -50,7 +50,6 @@ class Account:
 			username += self.binary_to_string(raw_username[i][::-1])
 		for i in reversed(range(len(raw_password))):
 			password += self.binary_to_string(raw_password[i][::-1])
-		print(username, password)
 	
 	def encrypt_creds(self, username, password):
 		'''

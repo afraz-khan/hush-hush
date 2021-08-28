@@ -54,6 +54,6 @@ class Auth:
 				return payload['sub']
 			raise jwt.InvalidTokenError
 		except jwt.ExpiredSignatureError:
-			return 'Signature expired. Please log in again.'
+			raise Exception('Signature expired. Please log in again.')
 		except jwt.InvalidTokenError:
-			return 'Invalid token. Please log in again.'
+			raise Exception('Invalid token. Please log in again.')
