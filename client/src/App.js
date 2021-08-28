@@ -1,35 +1,37 @@
 import cardano from './images/cardano.png';
 import './css/app.css';
-import './css/login.css'
-import './css/account.css'
+import './css/login.css';
+import './css/account.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import useToken from './components/useToken';
 import AddAccount from './components/account/AddAccount';
+import GetAccount from './components/account/GetAccount';
 
 function App() {
-	const { token, setToken } = useToken();
+  const { token, setToken } = useToken();
 
-  // if(!token) {
-  //   return <Login setToken={setToken} />
-  // }
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
+  console.log('aya he');
   return (
-    <div className="App">
-			<BrowserRouter>
+    <div className='App'>
+      <BrowserRouter>
         <Switch>
-          <Route path="/dashboard">
-            {/* <Dashboard />
-						 */}
-						 <header className="App-header">
-							<img src={cardano} className="App-logo" alt="logo" />
-						</header>
-						<div className='container account' >
-							<div className="d-flex justify-content-between flex-wrap"	 > 
-								<AddAccount></AddAccount>
-								<AddAccount></AddAccount>
-							</div>
-						</div>
+          <Route path='/'>
+            {/* <Dashboard /> */}
+
+            <header className='App-header'>
+              <img src={cardano} className='App-logo' alt='logo' />
+            </header>
+            <div className='container account'>
+              <div className='d-flex justify-content-between flex-wrap'>
+                <AddAccount></AddAccount>
+                <GetAccount></GetAccount>
+              </div>
+            </div>
           </Route>
         </Switch>
       </BrowserRouter>

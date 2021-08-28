@@ -5,7 +5,8 @@ import datetime
 import jwt
 
 class Auth:
-	def __init__(self, password) -> None:
+	def __init__(self, username, password) -> None:
+		self.username = username
 		self.password = password
 		self.salt = base64.b64decode(bytes(os.environ['PASS_SALT'], encoding='utf-8'))
 		self.key = base64.b64decode(bytes(os.environ['PASS_KEY'], encoding='utf-8'))
@@ -17,7 +18,7 @@ class Auth:
 			self.salt,
 			100000
 		)
-		if key == self.key:
+		if key == self.key and self.username == os.environ['USERNAME']:
 			return self.__encode_auth_token()
 		return False
 
