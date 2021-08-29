@@ -1,52 +1,55 @@
 .login-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.login-wrapper input{
-	font-size: 1.2vw;
+.login-wrapper input {
+  font-size: 1.2vw;
+  border: 2px solid white;
 }
 
-.login-wrapper label{
-	color: #575757;
-	font-size: 1.5vw;
-	font-weight: bold;
+.login-wrapper label {
+  color: #575757;
+  font-size: 1.5vw;
+  font-weight: bold;
 }
 
-.login-wrapper button{
-	font-size: 1.1vw;
+.login-wrapper button {
+  font-size: 1.1vw;
 }
 
-.login-header{
-	margin-top: 3vw;
-	margin-bottom: 5vw;
-	color: #088f30;
+.login-header {
+  margin-top: 3vw;
+  margin-bottom: 5vw;
+  color: #088f30;
 }
 
-.login-header img{
-	display: block;
+.login-header img {
+  display: block;
   margin-left: auto;
   margin-right: auto;
   width: 30%;
 }
 
-.login-header h1{
-	font-size: 3vw;
-	text-align: center;
+.login-header h1 {
+  font-size: 3vw;
+  text-align: center;
 }
 
-.login-header hr{
-	display: block; height: 1vw;
+.login-header hr {
+  display: block;
+  height: 1vw;
   border: 0;
-	border-top: 0.2vw solid #9b9b9b;
-  margin: 1vw 0; padding: 0;
+  border-top: 0.2vw solid #9b9b9b;
+  margin: 1vw 0;
+  padding: 0;
 }
 
-.spinner-grow{
-	margin-top: 1vw;
-	margin-bottom: 4.7vw;
-	width: 3vw;
-	height: 3vw;
-	display: none;
+.spinner-grow {
+  margin-top: 1vw;
+  margin-bottom: 4.7vw;
+  width: 3vw;
+  height: 3vw;
+  display: none;
 }

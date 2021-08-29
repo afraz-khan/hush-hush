@@ -1,5 +1,5 @@
 .App {
-	padding-top: 3vw;
+  padding-top: 3vw;
   text-align: center;
 }
 
@@ -38,7 +38,7 @@
 }
 
 footer {
-	position: fixed;
+  position: fixed;
   bottom: 0px;
   left: 0px;
   right: 0px;
@@ -46,7 +46,7 @@ footer {
   padding: 1.5%;
   font-size: 1.1vw;
   border-top: 1px solid #575757;
-	color: #575757;
+  color: #575757;
 }
 
 footer ul {
@@ -67,29 +67,28 @@ footer li:hover {
 
 @media screen and (max-width: 950px) {
   footer {
-		position:relative;
-		margin-top: 5vw;
-	}
+    position: relative;
+    margin-top: 5vw;
+  }
 }
 
-#github-icon span{
-	margin-right: 1vw;
-	color: #575757;
+#github-icon span {
+  margin-right: 1vw;
+  color: #575757;
 }
 
-#github-icon:hover{
-	text-decoration: none;
+#github-icon:hover {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 480px) {
-
-  .social-icon{
+  .social-icon {
     height: 2vh;
   }
 }
 
 @media screen and (max-width: 275px) {
-  .social-icon{
+  .social-icon {
     height: 1vh;
   }
 }

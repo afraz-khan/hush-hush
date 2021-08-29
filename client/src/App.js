@@ -4,8 +4,8 @@ import './css/login.css';
 import './css/account.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
-import Login from './components/Login';
-import useToken from './components/useToken';
+import Login from './components/auth/Login';
+import useToken from './components/auth/useToken';
 import AddAccount from './components/account/AddAccount';
 import GetAccount from './components/account/GetAccount';
 

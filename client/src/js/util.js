@@ -1,7 +1,14 @@
 import { ajaxRequest } from './request';
 
 async function login(params) {
-  const [username, master_secret, spinnerRef, setToken] = params;
+  const [
+    username,
+    master_secret,
+    spinnerRef,
+    setToken,
+    alertRef,
+    setAlertMessage,
+  ] = params;
 
   try {
     if (username && master_secret) {
@@ -21,10 +28,22 @@ async function login(params) {
     }
     throw new Error('Please provide me with complete info 🙂.');
   } catch (error) {
-    setTimeout(() => {
-      alert(error.message);
-      spinnerRef.current.style.display = 'none';
-    }, 1000);
+    // setTimeout(() => {
+    //   alert(error.message);
+    //   spinnerRef.current.style.display = 'none';
+    // }, 1000);
+    setAlertMessage('hello');
+    console.log(alertRef);
+  }
+}
+
+function passwordVisibility(input, eye) {
+  if (input.current.type === 'password') {
+    input.current.type = 'text';
+    eye.current.className = 'fa fa-eye-slash';
+  } else {
+    input.current.type = 'password';
+    eye.current.className = 'fa fa-eye';
   }
 }
 
@@ -57,4 +76,4 @@ async function addAccount(params) {
   }
 }
 
-export { login, addAccount };
+export { login, addAccount, passwordVisibility };
