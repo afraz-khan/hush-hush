@@ -9,9 +9,6 @@ from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
 import pickle
 
-os.environ['CIPHER_SECRET'] = 'TXN2TE15aWZpb0l0NFZSRjM4MEMwRHNxTXY2QmF6UDdqRjhoMC1VZDhrUT0='
-os.environ['CIPHER'] = 'hash.json'
-
 class Account:
 	'''Handles functionality for managing your digital account credentials
 	'''
@@ -39,17 +36,23 @@ class Account:
 		f.write(encrypted)
 		f.close()
 	
-	def search(self, origin):
+	def findOneByOrigin(self, origin):
 		'''searchs a single origin of a digital account
 		'''
-
-		origin_hash = self.key_hash(origin)
-		raw_username, raw_password = [ x.split() for x in self.decrypt_creds(self.cipher[origin_hash])]
-		username = password = ''
-		for i in reversed(range(len(raw_username))):
-			username += self.binary_to_string(raw_username[i][::-1])
-		for i in reversed(range(len(raw_password))):
-			password += self.binary_to_string(raw_password[i][::-1])
+		try:
+			origin_hash = self.key_hash(origin)
+			raw_username, raw_password = [ x.split() for x in self.decrypt_creds(self.cipher[origin_hash])]
+			username = password = ''
+			for i in reversed(range(len(raw_username))):
+				username += self.binary_to_string(raw_username[i][::-1])
+			for i in reversed(range(len(raw_password))):
+				password += self.binary_to_string(raw_password[i][::-1])
+			return {
+				'username': username,
+				'password': password
+			}
+		except KeyError:
+			raise KeyError('origin not found.')
 	
 	def encrypt_creds(self, username, password):
 		'''
@@ -125,7 +128,7 @@ class Account:
 		binary_key = self.string_to_binary(string)[::-1] # reverse the binary string
 		return hashlib.sha256(binary_key.encode(encoding='UTF-8', errors='strict')).hexdigest()
 	
-asd = Account()
+# asd = Account()
 # print(asd.string_to_binary('afraz'))
 # asd.create(username='waleed', password='1234', origin='MS')
-asd.search('FB')
+# print(asd.search('FS'))

@@ -3,18 +3,19 @@ import hashlib
 import os
 import datetime
 import jwt
+import uuid
 
 class Auth:
-	def __init__(self, username, password) -> None:
+	def __init__(self, username, master_secret) -> None:
 		self.username = username
-		self.password = password
+		self.master_secret = master_secret
 		self.salt = base64.b64decode(bytes(os.environ['PASS_SALT'], encoding='utf-8'))
 		self.key = base64.b64decode(bytes(os.environ['PASS_KEY'], encoding='utf-8'))
 
 	def authenticate(self):
 		key = hashlib.pbkdf2_hmac(
 			'sha256',
-			self.password.encode('utf-8'), # Convert the password to bytes
+			self.master_secret.encode('utf-8'), # Convert the master_secret to bytes
 			self.salt,
 			100000
 		)
@@ -28,8 +29,9 @@ class Auth:
     :return: string
     """
 		try:
+			os.environ['AUTH_JWT_SUB'] = str(uuid.uuid4())
 			payload = {
-				'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=30),
+				'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=300),
         'iat': datetime.datetime.utcnow(),
         'sub': os.environ['AUTH_JWT_SUB']
     	}
@@ -52,7 +54,6 @@ class Auth:
 			payload = jwt.decode(auth_token, os.environ['AUTH_JWT_SECRET'], algorithms='HS256')
 			if(payload['sub'] == os.environ['AUTH_JWT_SUB']):
 				return payload['sub']
-			raise jwt.InvalidTokenError
 		except jwt.ExpiredSignatureError:
 			raise Exception('Signature expired. Please log in again.')
 		except jwt.InvalidTokenError:
