@@ -8,28 +8,38 @@ import Alert from '../Alert';
 export default function Login({ setToken }) {
   const [username, setUsername] = useState();
   const [master_secret, setMasterSecret] = useState();
-  const [alertMessage, setAlertMessage] = useState();
+  const [alert, setAlert] = useState({
+    className: null,
+    message: null,
+  });
   const spinnerRef = useRef(null);
   const masterSecretRef = useRef(null);
-  const alertRef = useRef(null);
+
+  const showAlert = (message) => {
+    setAlert({
+      className: 'show',
+      message,
+    });
+  };
+
+  const hideAlert = () => {
+    setAlert({
+      className: 'hide',
+      message: '',
+    });
+  };
 
   const handleSubmit = async (e) => {
     spinnerRef.current.style.display = 'block';
+    hideAlert();
     e.preventDefault();
 
-    await login([
-      username,
-      master_secret,
-      spinnerRef,
-      setToken,
-      alertRef,
-      setAlertMessage,
-    ]);
+    await login([username, master_secret, spinnerRef, setToken, showAlert]);
   };
 
   return (
     <div>
-      <Alert ref={alertRef} message={alertMessage} />
+      <Alert data={alert} hideAlert={hideAlert} />
       <div className='login-wrapper'>
         <header>
           <div className='login-header'>

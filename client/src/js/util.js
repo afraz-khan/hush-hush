@@ -1,14 +1,9 @@
+import Alert from '../components/Alert';
 import { ajaxRequest } from './request';
+import ReactDom from 'react-dom';
 
 async function login(params) {
-  const [
-    username,
-    master_secret,
-    spinnerRef,
-    setToken,
-    alertRef,
-    setAlertMessage,
-  ] = params;
+  const [username, master_secret, spinnerRef, setToken, showAlert] = params;
 
   try {
     if (username && master_secret) {
@@ -28,12 +23,10 @@ async function login(params) {
     }
     throw new Error('Please provide me with complete info 🙂.');
   } catch (error) {
-    // setTimeout(() => {
-    //   alert(error.message);
-    //   spinnerRef.current.style.display = 'none';
-    // }, 1000);
-    setAlertMessage('hello');
-    console.log(alertRef);
+    setTimeout(() => {
+      showAlert(error.message);
+      spinnerRef.current.style.display = 'none';
+    }, 1000);
   }
 }
 
