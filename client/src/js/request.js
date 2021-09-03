@@ -16,7 +16,13 @@ function createQueryString(queryParams = {}) {
   return '';
 }
 
-function ajaxRequest(method, url, data = {}, headers = {}, queryParams = {}) {
+async function ajaxRequest(
+  method,
+  url,
+  data = {},
+  headers = {},
+  queryParams = {}
+) {
   Object.assign(headers, {
     'Content-Type': 'application/json', // additional headers
   });

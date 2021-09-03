@@ -1,33 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import logo from '../../images/logo64.png';
 import Footer from '../Footer';
 import { login } from '../../js/util';
 import PasswordEye from '../PasswordEye';
-import Alert from '../Alert';
+import { AlertContext } from '../AlertContext';
 
 export default function Login({ setToken }) {
+  const [alert, hideAlert, showAlert] = useContext(AlertContext);
   const [username, setUsername] = useState();
   const [master_secret, setMasterSecret] = useState();
-  const [alert, setAlert] = useState({
-    className: null,
-    message: null,
-  });
   const spinnerRef = useRef(null);
   const masterSecretRef = useRef(null);
-
-  const showAlert = (message) => {
-    setAlert({
-      className: 'show',
-      message,
-    });
-  };
-
-  const hideAlert = () => {
-    setAlert({
-      className: 'hide',
-      message: '',
-    });
-  };
 
   const handleSubmit = async (e) => {
     spinnerRef.current.style.display = 'block';
@@ -39,7 +22,6 @@ export default function Login({ setToken }) {
 
   return (
     <div>
-      <Alert data={alert} hideAlert={hideAlert} />
       <div className='login-wrapper'>
         <header>
           <div className='login-header'>

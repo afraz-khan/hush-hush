@@ -1,6 +1,4 @@
-import Alert from '../components/Alert';
 import { ajaxRequest } from './request';
-import ReactDom from 'react-dom';
 
 async function login(params) {
   const [username, master_secret, spinnerRef, setToken, showAlert] = params;
