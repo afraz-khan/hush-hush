@@ -1,7 +1,7 @@
 import cardano from './images/cardano.png';
 import './css/app.css';
 import './css/login.css';
-import './css/account.css';
+import './css/account/account.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
 import useToken from './components/auth/useToken';
