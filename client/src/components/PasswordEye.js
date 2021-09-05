@@ -3,7 +3,6 @@ import { passwordVisibility } from '../js/util';
 
 export default function PasswordEye({ input, PasswordEyeHeight }) {
   const eyeRef = useRef(null);
-  console.log(PasswordEyeHeight);
   return (
     <span className='input-group-append'>
       <button

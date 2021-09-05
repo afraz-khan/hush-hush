@@ -3,6 +3,8 @@ import { addAccount } from '../../js/util';
 import { AlertContext } from '../AlertContext';
 import PasswordEye from '../PasswordEye';
 import '../../css/account/addAccount.css';
+import Tooltip from '../Tooltip';
+import config from '../../js/config';
 
 export default function AddAccount() {
   const [alert, hideAlert, showAlert] = useContext(AlertContext);
@@ -12,7 +14,7 @@ export default function AddAccount() {
   const originRef = useRef(null);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
-  const PasswordEyeHeight = '57%';
+  const PasswordEyeHeight = '65%';
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -40,7 +42,7 @@ export default function AddAccount() {
             placeholder='origin'
             required
           />
-          <label for='origin'>asdasdd</label>
+          <Tooltip props={config.addAccount.tooltip.origin} />
         </div>
         <div className='col-lg-3 col-sm-4'>
           <input
@@ -51,6 +53,7 @@ export default function AddAccount() {
             placeholder='username'
             required
           />
+          <Tooltip props={config.addAccount.tooltip.username} />
         </div>
         <div className='col-lg-3 col-sm-4 d-flex'>
           <input
@@ -63,7 +66,7 @@ export default function AddAccount() {
           />
           <PasswordEye
             input={passwordRef}
-            PasswordEyeHeight={PasswordEyeHeight}
+            PasswordEyeHeight={config.addAccount.passwordEyeHeight}
           />
         </div>
         <div className='col-auto'>
