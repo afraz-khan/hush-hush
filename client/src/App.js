@@ -24,7 +24,7 @@ function App() {
                 </header>
                 <div className='container account'>
                   <div className='d-flex justify-content-between flex-wrap'>
-                    <AddAccount></AddAccount>
+                    <AddAccount token={token}></AddAccount>
                     <GetAccount></GetAccount>
                   </div>
                 </div>

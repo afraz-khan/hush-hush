@@ -39,30 +39,38 @@ function passwordVisibility(input, eye) {
 }
 
 async function addAccount(params) {
-  const [origin, username, password, originRef, usernameRef, passwordRef] =
-    params;
+  const [
+    origin,
+    username,
+    password,
+    originRef,
+    usernameRef,
+    passwordRef,
+    showAlert,
+    token,
+  ] = params;
 
   try {
-    if (username && master_secret) {
-      const data = await auth({
+    const data = await ajaxRequest(
+      'POST',
+      'accounts',
+      {
+        origin,
         username,
-        master_secret,
-      });
-      const respObj = await data.json();
+        password,
+      },
+      { Authorization: token }
+    );
+    const respObj = await data.json();
 
-      if (respObj.status_code === 200) {
-        setToken({
-          token: data.headers.get('Authorization'),
-        });
-        return;
-      }
-      throw new Error(respObj.message);
+    if (respObj.status_code === 200) {
+      showAlert('Credentials saved successfully.');
+      return;
     }
-    throw new Error('Please provide me with complete info 🙂.');
+    throw new Error(respObj.message);
   } catch (error) {
     setTimeout(() => {
-      alert(error.message);
-      spinnerRef.current.style.display = 'none';
+      showAlert(error.message);
     }, 1000);
   }
 }

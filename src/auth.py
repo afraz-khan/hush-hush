@@ -29,9 +29,8 @@ class Auth:
     :return: string
     """
 		try:
-			os.environ['AUTH_JWT_SUB'] = str(uuid.uuid4())
 			payload = {
-				'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=300),
+				'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
         'iat': datetime.datetime.utcnow(),
         'sub': os.environ['AUTH_JWT_SUB']
     	}
@@ -55,6 +54,6 @@ class Auth:
 			if(payload['sub'] == os.environ['AUTH_JWT_SUB']):
 				return payload['sub']
 		except jwt.ExpiredSignatureError:
-			raise Exception('Signature expired. Please log in again.')
+			raise Exception('Signature expired. Please log in again.',{'code': 100})
 		except jwt.InvalidTokenError:
-			raise Exception('Invalid token. Please log in again.')
+			raise Exception('Invalid token. Please log in again.', {'code': 200})

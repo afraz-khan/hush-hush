@@ -6,7 +6,7 @@ import '../../css/account/addAccount.css';
 import Tooltip from '../Tooltip';
 import config from '../../js/config';
 
-export default function AddAccount() {
+export default function AddAccount({ token }) {
   const [alert, hideAlert, showAlert] = useContext(AlertContext);
   const [origin, setOrigin] = useState();
   const [username, setUsername] = useState();
@@ -14,19 +14,21 @@ export default function AddAccount() {
   const originRef = useRef(null);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
-  const PasswordEyeHeight = '65%';
 
   async function handleSubmit(e) {
     e.preventDefault();
+    hideAlert();
 
-    await addAccount({
+    await addAccount([
       origin,
       username,
       password,
       originRef,
       usernameRef,
       passwordRef,
-    });
+      showAlert,
+      token,
+    ]);
   }
 
   return (

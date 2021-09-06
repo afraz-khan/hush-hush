@@ -15,6 +15,9 @@ export const AlertContextProvider = ({ children }) => {
       className: 'show',
       message,
     });
+    setTimeout(() => {
+      hideAlert();
+    }, 5000);
   };
 
   const hideAlert = () => {

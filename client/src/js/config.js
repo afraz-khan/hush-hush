@@ -1,4 +1,4 @@
-const config = {
+const styleConfig = {
   addAccount: {
     passwordEyeHeight: '65%',
     tooltip: {
@@ -18,4 +18,4 @@ const config = {
   },
 };
 
-export default config;
+export default styleConfig;

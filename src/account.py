@@ -1,5 +1,6 @@
 import base64
 import hashlib
+from re import search
 from cryptography.fernet import Fernet
 import os
 import json
@@ -29,18 +30,23 @@ class Account:
 		and dumps in main cipher file storage
 		'''
 
+		already_exists = self.findOneByOrigin(origin)
+		if(already_exists):
+			return None
 		self.cipher[self.key_hash(origin)] = self.encrypt_creds(username, password)
 		encrypted = self.fernet.encrypt(pickle.dumps(self.cipher))
 		
 		f = open(os.environ['CIPHER'],'wb')
 		f.write(encrypted)
 		f.close()
+		return True
 	
 	def findOneByOrigin(self, origin):
 		'''searchs a single origin of a digital account
 		'''
+
+		origin_hash = self.key_hash(origin)
 		try:
-			origin_hash = self.key_hash(origin)
 			raw_username, raw_password = [ x.split() for x in self.decrypt_creds(self.cipher[origin_hash])]
 			username = password = ''
 			for i in reversed(range(len(raw_username))):
@@ -51,8 +57,8 @@ class Account:
 				'username': username,
 				'password': password
 			}
-		except KeyError:
-			raise KeyError('origin not found.')
+		except KeyError as e:
+			return None
 	
 	def encrypt_creds(self, username, password):
 		'''

@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { passwordVisibility } from '../js/util';
 
 export default function PasswordEye({ input, PasswordEyeHeight }) {
   const eyeRef = useRef(null);
   return (
-    <span className='input-group-append'>
+    <span style={{ zIndex: 0 }} className='input-group-append'>
       <button
         id='password-eye'
         style={{ height: `${PasswordEyeHeight}` }}
