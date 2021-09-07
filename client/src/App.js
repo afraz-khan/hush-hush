@@ -1,36 +1,19 @@
-import cardano from './images/cardano.png';
 import './css/app.css';
 import './css/login.css';
 import './css/account/account.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
 import useToken from './components/auth/useToken';
-import AddAccount from './components/account/AddAccount';
-import GetAccount from './components/account/GetAccount';
 import { AlertContextProvider } from './components/AlertContext';
+import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
-  const { token, setToken } = useToken();
+  const { token, setToken, unsetToken } = useToken();
 
   return (
     <AlertContextProvider>
       {token ? (
         <div className='App'>
-          <BrowserRouter>
-            <Switch>
-              <Route path='/'>
-                <header className='App-header'>
-                  <img src={cardano} className='App-logo' alt='logo' />
-                </header>
-                <div className='container account'>
-                  <div className='d-flex justify-content-between flex-wrap'>
-                    <AddAccount token={token}></AddAccount>
-                    <GetAccount></GetAccount>
-                  </div>
-                </div>
-              </Route>
-            </Switch>
-          </BrowserRouter>
+          <Dashboard token={token} unsetToken={unsetToken} />
         </div>
       ) : (
         <Login setToken={setToken} />

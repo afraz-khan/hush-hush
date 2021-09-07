@@ -1,9 +1,10 @@
 .alert {
   position: fixed;
-  top: 1vw;
-  right: 1vw;
+  top: 15vh;
+  right: 1vh;
   font-size: 1vw;
   width: 40%;
+  z-index: 2;
 }
 
 .alert .close {

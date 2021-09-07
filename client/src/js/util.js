@@ -65,6 +65,9 @@ async function addAccount(params) {
 
     if (respObj.status_code === 200) {
       showAlert('Credentials saved successfully.');
+      originRef.current.value = null;
+      usernameRef.current.value = null;
+      passwordRef.current.value = null;
       return;
     }
     throw new Error(respObj.message);
