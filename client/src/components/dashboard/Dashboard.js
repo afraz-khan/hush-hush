@@ -1,7 +1,7 @@
 import cardano from '../../images/cardano.png';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddAccount from '../account/AddAccount';
-import GetAccount from '../account/GetAccount';
+import SearchAccount from '../account/SearchAccount';
 import logo from '../../images/logo.svg';
 
 export default function Dashboard({ token, unsetToken }) {
@@ -50,7 +50,7 @@ export default function Dashboard({ token, unsetToken }) {
           <div className='container account'>
             <div className='d-flex justify-content-between flex-wrap'>
               <AddAccount token={token}></AddAccount>
-              <GetAccount></GetAccount>
+              <SearchAccount></SearchAccount>
             </div>
           </div>
         </Route>

@@ -1,0 +1,12 @@
+.search-account {
+  text-align: left;
+}
+
+/* .search-account label {
+  border-bottom: 1px solid #575757;
+} */
+
+.search-account label h6 {
+  border-bottom: 1px solid #6c757d !important;
+  color: #6c757d !important;
+}
