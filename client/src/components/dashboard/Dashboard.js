@@ -50,7 +50,7 @@ export default function Dashboard({ token, unsetToken }) {
           <div className='container account'>
             <div className='d-flex justify-content-between flex-wrap'>
               <AddAccount token={token}></AddAccount>
-              <SearchAccount></SearchAccount>
+              <SearchAccount token={token}></SearchAccount>
             </div>
           </div>
         </Route>

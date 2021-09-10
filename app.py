@@ -91,8 +91,18 @@ def get_account(origin):
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
 
-@app.route("/auth/test", methods=['POST'])
-def test():
-	return {
-		'data': 'helloe'
-	}
+@app.route('/accounts', methods=['GET'])
+def search_account():
+	status_code = 500
+	try:
+		if('origin' in request.args.keys()):
+			account = Account()
+			return Constant.create_response(200, 'success', account.search(request.args['origin'])), 200
+		status_code = 400
+		raise Exception(('invalid_request'))
+	except Exception as e:
+		print('ERROR: ' , e)
+		message = e.__str__()
+		if status_code == 500:
+			message = 'Seems like, demodogs are not happy 🥲.'
+		return Constant.create_response(status_code, message), status_code

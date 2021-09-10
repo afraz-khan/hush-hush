@@ -27,12 +27,13 @@ async function ajaxRequest(
     'Content-Type': 'application/json', // additional headers
   });
   url += createQueryString(queryParams);
+  const reqObj = { method, headers };
+  if (Object.keys(data).length) {
+    reqObj['body'] = JSON.stringify(data);
+  }
+  console.log(reqObj);
 
-  return fetch(url, {
-    method,
-    headers,
-    body: JSON.stringify(data),
-  })
+  return fetch(url, reqObj)
     .then((response) => response)
     .catch((err) => {
       console.error(err);

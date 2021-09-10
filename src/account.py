@@ -33,7 +33,7 @@ class Account:
 		already_exists = self.findOneByOrigin(origin)
 		if(already_exists):
 			return None
-		self.cipher[self.key_hash(origin)] = self.encrypt_creds(username, password)
+		self.cipher[self.key_hash(origin)] = self.encrypt_creds(origin, username, password)
 		encrypted = self.fernet.encrypt(pickle.dumps(self.cipher))
 		
 		f = open(os.environ['CIPHER'],'wb')
@@ -47,20 +47,28 @@ class Account:
 
 		origin_hash = self.key_hash(origin)
 		try:
-			raw_username, raw_password = [ x.split() for x in self.decrypt_creds(self.cipher[origin_hash])]
-			username = password = ''
-			for i in reversed(range(len(raw_username))):
-				username += self.binary_to_string(raw_username[i][::-1])
-			for i in reversed(range(len(raw_password))):
-				password += self.binary_to_string(raw_password[i][::-1])
-			return {
-				'username': username,
-				'password': password
-			}
+			return self.construct_creds(self.cipher[origin_hash])
 		except KeyError as e:
 			return None
-	
-	def encrypt_creds(self, username, password):
+
+	def search(self, term):
+		result=[]
+		term.strip()
+		words = term.split()
+		data = [x['origin'] for x in self.load_creds_list()]
+		for word in words:
+			for origin in data:
+				if(word in origin and origin not in result):
+					result.append(origin)
+		return result
+
+	def load_creds_list(self):
+		data = []
+		for k in self.cipher.keys():
+			data.append(self.construct_creds(self.cipher[k]))
+		return data
+
+	def encrypt_creds(self, origin, username, password):
 		'''
 		1. reverses binary representation of both username & password.
 		2. converts to bytes with pickle and creates a respective bytes array using
@@ -68,6 +76,7 @@ class Account:
 		'''
 
 		data = [
+			self.string_to_binary(origin)[::-1],
 			self.string_to_binary(username)[::-1],
 			self.string_to_binary(password)[::-1]
 		]
@@ -84,7 +93,22 @@ class Account:
 
 		return [enc_session_key, cipher_aes.nonce, tag, ciphertext]
 
-	def decrypt_creds(self, data):
+	def construct_creds(self, origin_hash):
+		raw_origin, raw_username, raw_password = [ x.split() for x in self.decrypt_blob(origin_hash)]
+		origin = username = password = ''
+		for i in reversed(range(len(raw_username))):
+			username += self.binary_to_string(raw_username[i][::-1])
+		for i in reversed(range(len(raw_password))):
+			password += self.binary_to_string(raw_password[i][::-1])
+		for i in reversed(range(len(raw_origin))):
+			origin += self.binary_to_string(raw_origin[i][::-1])
+		return {
+			'origin': origin,
+			'username': username,
+			'password': password
+		}
+
+	def decrypt_blob(self, data):
 		'''
 		1. takes bytes blob of a digital username/password pair and decodes it
 		   from bytes to regular form using pickle.

@@ -18,6 +18,7 @@ export default function AddAccount({ token }) {
   async function handleSubmit(e) {
     e.preventDefault();
     hideAlert();
+    document.body.style.cursor = 'wait';
 
     await addAccount([
       origin,

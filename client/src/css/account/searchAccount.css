@@ -10,3 +10,25 @@
   border-bottom: 1px solid #6c757d !important;
   color: #6c757d !important;
 }
+
+.search-account select {
+  font-size: small;
+  padding: 0;
+}
+
+.search-account select option {
+  padding-left: 10px;
+  padding-top: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d7e4ff;
+  transition: background-color 1s ease-out;
+}
+
+.search-account select option:hover {
+  cursor: pointer;
+  background-color: #dbeeff;
+  -webkit-transition: background-color 1s ease-out;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out;
+}

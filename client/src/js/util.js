@@ -21,10 +21,12 @@ async function login(params) {
     }
     throw new Error('Please provide me with complete info 🙂.');
   } catch (error) {
-    setTimeout(() => {
-      showAlert(error.message);
-      spinnerRef.current.style.display = 'none';
-    }, 1000);
+    showAlert(error.message);
+    spinnerRef.current.style.display = 'none';
+    // setTimeout(() => {
+    // showAlert(error.message);
+    // spinnerRef.current.style.display = 'none';
+    // }, 1000);
   }
 }
 
@@ -64,6 +66,7 @@ async function addAccount(params) {
     const respObj = await data.json();
 
     if (respObj.status_code === 200) {
+      document.body.style.cursor = 'default';
       showAlert('Credentials saved successfully.');
       originRef.current.value = null;
       usernameRef.current.value = null;
@@ -72,10 +75,47 @@ async function addAccount(params) {
     }
     throw new Error(respObj.message);
   } catch (error) {
-    setTimeout(() => {
-      showAlert(error.message);
-    }, 1000);
+    document.body.style.cursor = 'default';
+    showAlert(error.message);
+    // setTimeout(() => {
+    //   showAlert(error.message);
+    // }, 1000);
   }
 }
 
-export { login, addAccount, passwordVisibility };
+async function searchAccounts(params) {
+  const [text, setData, token, showAlert, selectRef] = params;
+
+  try {
+    const data = await ajaxRequest(
+      'GET',
+      'accounts',
+      {},
+      { Authorization: token },
+      {
+        origin: text,
+      }
+    );
+    const respObj = await data.json();
+
+    if (respObj.status_code === 200) {
+      if (respObj.data.length > 0) {
+        selectRef.current.style.display = 'block';
+      } else {
+        selectRef.current.style.display = 'none';
+      }
+      setData(respObj.data);
+      document.body.style.cursor = 'default';
+      return;
+    }
+    throw new Error(respObj.message);
+  } catch (error) {
+    showAlert(error.message);
+    document.body.style.cursor = 'default';
+    // setTimeout(() => {
+    //   alert(error.message);
+    // }, 1000);
+  }
+}
+
+export { login, addAccount, searchAccounts, passwordVisibility };
