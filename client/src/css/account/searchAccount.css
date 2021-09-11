@@ -14,6 +14,8 @@
 .search-account select {
   font-size: small;
   padding: 0;
+  position: absolute;
+  display: none;
 }
 
 .search-account select option {
@@ -31,4 +33,14 @@
   -moz-transition: background-color 1s ease-out;
   -o-transition: background-color 1s ease-out;
   transition: background-color 1s ease-out;
+}
+
+.search-account .spinner-grow {
+  margin-left: 50%;
+}
+
+#nothing-found {
+  color: #ff6f6f;
+  margin-top: 10px;
+  display: none;
 }

@@ -4,6 +4,7 @@ import Footer from '../Footer';
 import { login } from '../../js/util';
 import PasswordEye from '../PasswordEye';
 import { AlertContext } from '../AlertContext';
+import Spinner from '../Spinner';
 
 export default function Login({ setToken }) {
   const [alert, hideAlert, showAlert] = useContext(AlertContext);
@@ -13,7 +14,7 @@ export default function Login({ setToken }) {
   const masterSecretRef = useRef(null);
 
   const handleSubmit = async (e) => {
-    spinnerRef.current.style.display = 'block';
+    spinnerRef.current.style.display = 'inline-block';
     hideAlert();
     e.preventDefault();
 
@@ -59,12 +60,7 @@ export default function Login({ setToken }) {
             Submit
           </button>
         </form>
-        <div
-          ref={spinnerRef}
-          className='spinner-grow text-success'
-          role='status'>
-          <span className='sr-only'>Loading...</span>
-        </div>
+        <Spinner spinner={spinnerRef} />
       </div>
       <Footer></Footer>
     </div>

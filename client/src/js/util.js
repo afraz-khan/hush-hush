@@ -24,8 +24,8 @@ async function login(params) {
     showAlert(error.message);
     spinnerRef.current.style.display = 'none';
     // setTimeout(() => {
-    // showAlert(error.message);
-    // spinnerRef.current.style.display = 'none';
+    //   showAlert(error.message);
+    //   spinnerRef.current.style.display = 'none';
     // }, 1000);
   }
 }
@@ -84,7 +84,15 @@ async function addAccount(params) {
 }
 
 async function searchAccounts(params) {
-  const [text, setData, token, showAlert, selectRef] = params;
+  const [
+    text,
+    setData,
+    token,
+    showAlert,
+    selectRef,
+    spinnerRef,
+    nothingFoundRef,
+  ] = params;
 
   try {
     const data = await ajaxRequest(
@@ -100,18 +108,21 @@ async function searchAccounts(params) {
 
     if (respObj.status_code === 200) {
       if (respObj.data.length > 0) {
-        selectRef.current.style.display = 'block';
+        selectRef.current.style.display = 'inline-block';
       } else {
         selectRef.current.style.display = 'none';
+        nothingFoundRef.current.style.display = 'inline-block';
       }
+      spinnerRef.current.style.display = 'none';
       setData(respObj.data);
-      document.body.style.cursor = 'default';
       return;
     }
     throw new Error(respObj.message);
   } catch (error) {
     showAlert(error.message);
-    document.body.style.cursor = 'default';
+    spinnerRef.current.style.display = 'none';
+    selectRef.current.style.display = 'none';
+    nothingFoundRef.current.style.display = 'none';
     // setTimeout(() => {
     //   alert(error.message);
     // }, 1000);

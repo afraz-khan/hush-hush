@@ -17,7 +17,7 @@ export default function Dashboard({ token, unsetToken }) {
       <Switch>
         <Route path='/'>
           <nav className='navbar'>
-            <a className='navbar-brand'>
+            <a href='#' className='navbar-brand'>
               <img src={logo} />
             </a>
             <h3 style={{ color: '#088f30' }}>
