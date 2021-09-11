@@ -56,9 +56,9 @@ def add_account():
 	try:
 		data = json.loads(request.data)
 		requiredFields = ['origin', 'username', 'password']
-		accont = Account()
-		if(all(k in data.keys() for k in requiredFields)):
-			result = accont.create(data['origin'], data['username'], data['password'])
+		account = Account()
+		if(all((k in data.keys() and data[k] != '' and data[k] != ' ') for k in requiredFields)):
+			result = account.create(data)
 			if(result):
 				status_code = 200
 				return Constant.create_response(status_code, 'success'), status_code
@@ -78,8 +78,8 @@ def add_account():
 def get_account(origin):
 	status_code = 500
 	try:
-		accont = Account()
-		data = accont.findOneByOrigin(origin)
+		account = Account()
+		data = account.findOneByOrigin(origin)
 		if(data):
 			return Constant.create_response(200, 'success', data), 200
 		status_code = 404
@@ -92,7 +92,7 @@ def get_account(origin):
 		return Constant.create_response(status_code, message), status_code
 
 @app.route('/accounts', methods=['GET'])
-def search_account():
+def search_by_origin():
 	status_code = 500
 	try:
 		if('origin' in request.args.keys()):
@@ -100,6 +100,46 @@ def search_account():
 			return Constant.create_response(200, 'success', account.search(request.args['origin'])), 200
 		status_code = 400
 		raise Exception(('invalid_request'))
+	except Exception as e:
+		print('ERROR: ' , e)
+		message = e.__str__()
+		if status_code == 500:
+			message = 'Seems like, demodogs are not happy 🥲.'
+		return Constant.create_response(status_code, message), status_code
+
+@app.route('/accounts/<origin>', methods=['PUT'])
+def update_account(origin):
+	status_code = 500
+	try:
+		data = json.loads(request.data)
+		allowedFields = ['username', 'password']
+		account = Account()
+		print(all((k in allowedFields and data[k] != '' and data[k] != ' ') for k in data.keys()))
+		if(all((k in allowedFields and data[k] != '' and data[k] != ' ') for k in data.keys())):
+			isUpdated = account.update_account(origin, data)
+			if(isUpdated):
+				return Constant.create_response(200, 'success'), 200
+			status_code = 404
+			raise Exception('Origin not found.')
+		status_code = 400
+		raise Exception(('invalid_request'))
+	except Exception as e:
+		print('ERROR: ' , e)
+		message = e.__str__()
+		if status_code == 500:
+			message = 'Seems like, demodogs are not happy 🥲.'
+		return Constant.create_response(status_code, message), status_code
+
+@app.route('/accounts/<origin>', methods=['DELETE'])
+def delete_account(origin):
+	status_code = 500
+	try:
+		account = Account()
+		isDeleted = account.delete_account(origin)
+		if(isDeleted):
+			return Constant.create_response(200, 'success'), 200
+		status_code = 404
+		raise Exception('origin not found.')
 	except Exception as e:
 		print('ERROR: ' , e)
 		message = e.__str__()

@@ -8,12 +8,13 @@ import EditAccount from './EditAccount';
 export default function SearchAccount({ token }) {
   const [alert, hideAlert, showAlert] = useContext(AlertContext);
   const [data, setData] = useState([]);
+  const [account, setAccount] = useState({});
   const selectRef = useRef(null);
   const spinnerRef = useRef(null);
   const inputRef = useRef(null);
   const nothingFoundRef = useRef(null);
 
-  // Edit Modal Fields
+  // Modal edit fields
   const editOriginRef = useRef(null);
   const editUsernameRef = useRef(null);
   const editPasswordRef = useRef(null);
@@ -49,6 +50,7 @@ export default function SearchAccount({ token }) {
 
   function onOriginSelect(e) {
     const account = data.find((record) => record['origin'] === e.target.value);
+    setAccount(account);
     editOriginRef.current.value = account['origin'];
     editUsernameRef.current.value = account['username'];
     editPasswordRef.current.value = account['password'];
@@ -103,7 +105,14 @@ export default function SearchAccount({ token }) {
       </form>
       <Spinner spinner={spinnerRef} />
       <EditAccount
-        props={{ token, editOriginRef, editUsernameRef, editPasswordRef }}
+        props={{
+          token,
+          editOriginRef,
+          editUsernameRef,
+          editPasswordRef,
+          account,
+          setAccount,
+        }}
       />
     </div>
   );

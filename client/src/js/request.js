@@ -31,7 +31,6 @@ async function ajaxRequest(
   if (Object.keys(data).length) {
     reqObj['body'] = JSON.stringify(data);
   }
-  console.log(reqObj);
 
   return fetch(url, reqObj)
     .then((response) => response)

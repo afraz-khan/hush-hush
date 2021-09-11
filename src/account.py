@@ -25,20 +25,16 @@ class Account:
 			self.cipher = pickle.loads(self.fernet.decrypt(hash_data)) # cipher data is pickel saved
 			f.close()																									 # to bytes
 	
-	def create(self, origin, username, password):
+	def create(self, data):
 		'''creats new bytes tuple for a new digital account 
 		and dumps in main cipher file storage
 		'''
 
-		already_exists = self.findOneByOrigin(origin)
+		already_exists = self.findOneByOrigin(data['origin'])
 		if(already_exists):
 			return None
-		self.cipher[self.key_hash(origin)] = self.encrypt_creds(origin, username, password)
-		encrypted = self.fernet.encrypt(pickle.dumps(self.cipher))
-		
-		f = open(os.environ['CIPHER'],'wb')
-		f.write(encrypted)
-		f.close()
+		self.cipher[self.key_hash(data['origin'])] = self.encrypt_blob(data['origin'], data['username'], data['password'])
+		self.update_hash()
 		return True
 	
 	def findOneByOrigin(self, origin):
@@ -55,12 +51,36 @@ class Account:
 		result=[]
 		term.strip()
 		words = term.split()
-		data = [x['origin'] for x in self.load_creds_list()]
+		data = [x for x in self.load_creds_list()]
 		for word in words:
-			for origin in data:
-				if(word in origin and origin not in result):
-					result.append(origin)
+			for record in data:
+				if(word.lower() in record['origin'].lower() and record not in result):
+					result.append(record)
 		return result
+
+	def delete_account(self, origin):
+		deleted_account = self.cipher.pop(self.key_hash(origin), None)
+		if(deleted_account):
+			self.update_hash()
+			return True
+		return False
+
+	def update_account(self, origin, data):
+		account = self.findOneByOrigin(origin)
+		if(account):
+			for prop in data:
+				account[prop] = data[prop]
+			self.cipher[self.key_hash(origin)] = self.encrypt_blob(origin, account['username'], account['password'])
+			self.update_hash()
+			return True
+		return False
+
+	def update_hash(self):
+		encrypted = self.fernet.encrypt(pickle.dumps(self.cipher))
+		
+		f = open(os.environ['CIPHER'],'wb')
+		f.write(encrypted)
+		f.close()
 
 	def load_creds_list(self):
 		data = []
@@ -68,7 +88,7 @@ class Account:
 			data.append(self.construct_creds(self.cipher[k]))
 		return data
 
-	def encrypt_creds(self, origin, username, password):
+	def encrypt_blob(self, origin, username, password):
 		'''
 		1. reverses binary representation of both username & password.
 		2. converts to bytes with pickle and creates a respective bytes array using
@@ -93,8 +113,8 @@ class Account:
 
 		return [enc_session_key, cipher_aes.nonce, tag, ciphertext]
 
-	def construct_creds(self, origin_hash):
-		raw_origin, raw_username, raw_password = [ x.split() for x in self.decrypt_blob(origin_hash)]
+	def construct_creds(self, creds_data):
+		raw_origin, raw_username, raw_password = [ x.split() for x in self.decrypt_blob(creds_data)]
 		origin = username = password = ''
 		for i in reversed(range(len(raw_username))):
 			username += self.binary_to_string(raw_username[i][::-1])

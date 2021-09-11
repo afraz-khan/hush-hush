@@ -1,8 +1,12 @@
 import '../css/spinner.css';
 
-export default function Spinner({ spinner }) {
+export default function Spinner({ spinner, style }) {
   return (
-    <div ref={spinner} className='spinner-grow text-success' role='status'>
+    <div
+      style={style}
+      ref={spinner}
+      className='spinner-grow text-success'
+      role='status'>
       <span className='sr-only'>Loading...</span>
     </div>
   );

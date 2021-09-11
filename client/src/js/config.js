@@ -16,6 +16,12 @@ const styleConfig = {
       },
     },
   },
+  editAccount: {
+    spinner: {
+      width: '25px',
+      height: '25px',
+    },
+  },
 };
 
 export default styleConfig;
