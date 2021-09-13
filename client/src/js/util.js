@@ -112,6 +112,9 @@ async function searchAccounts(params) {
       } else {
         selectRef.current.style.display = 'none';
         nothingFoundRef.current.style.display = 'inline-block';
+        setTimeout(() => {
+          nothingFoundRef.current.style.display = 'none';
+        }, 2000);
       }
       spinnerRef.current.style.display = 'none';
       setData(respObj.data);
@@ -130,49 +133,43 @@ async function searchAccounts(params) {
 }
 
 async function updateAccount(params) {
-  const [
-    text,
-    setData,
-    token,
-    showAlert,
-    selectRef,
-    spinnerRef,
-    nothingFoundRef,
-  ] = params;
-
+  const [origin, body, token, showEditMessage] = params;
   try {
-    const data = await ajaxRequest(
-      'PUT',
-      `accounts/${origin}`,
-      {},
-      { Authorization: token },
-      {
-        origin: text,
-      }
-    );
+    const data = await ajaxRequest('PUT', `accounts/${origin}`, body, {
+      Authorization: token,
+    });
     const respObj = await data.json();
 
     if (respObj.status_code === 200) {
-      if (respObj.data.length > 0) {
-        selectRef.current.style.display = 'inline-block';
-      } else {
-        selectRef.current.style.display = 'none';
-        nothingFoundRef.current.style.display = 'inline-block';
-      }
-      spinnerRef.current.style.display = 'none';
-      setData(respObj.data);
-      return;
+      document.body.style.cursor = 'default';
+      showEditMessage('Updated successfully!');
+      return true;
     }
     throw new Error(respObj.message);
   } catch (error) {
-    showAlert(error.message);
-    spinnerRef.current.style.display = 'none';
-    selectRef.current.style.display = 'none';
-    nothingFoundRef.current.style.display = 'none';
-    // setTimeout(() => {
-    //   alert(error.message);
-    // }, 1000);
+    console.error(error);
+    document.body.style.cursor = 'default';
+    showEditMessage(error.message, '#ff6f6f');
+    return false;
   }
 }
 
-export { login, addAccount, searchAccounts, passwordVisibility };
+function validateStrings(values) {
+  let isValid = true;
+  for (let i = 0; i < values.length; i++) {
+    if (/^\s*$/.test(values[i])) {
+      isValid = false;
+      break;
+    }
+  }
+  return isValid;
+}
+
+export {
+  login,
+  addAccount,
+  searchAccounts,
+  updateAccount,
+  passwordVisibility,
+  validateStrings,
+};

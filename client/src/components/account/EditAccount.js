@@ -1,14 +1,11 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PasswordEye from '../PasswordEye';
-import Spinner from '../Spinner';
 import '../../css/account/editAccount.css';
-import config from '../../js/config';
-import { AlertContext } from '../AlertContext';
+import { updateAccount, validateStrings } from '../../js/util';
 
 export default function EditAccount({ props }) {
-  const [alert, hideAlert, showAlert] = useContext(AlertContext);
-  const spinnerRef = useRef(null);
   const buttonGroupRef = useRef(null);
+  const editMessageRef = useRef(null);
 
   useEffect(() => {
     window.addEventListener(
@@ -26,13 +23,47 @@ export default function EditAccount({ props }) {
     );
   }, []);
 
+  function showEditMessage(message, color = '#088f30') {
+    editMessageRef.current.innerText = message;
+    editMessageRef.current.style.color = color;
+    editMessageRef.current.style.opacity = 1;
+    setTimeout(() => {
+      editMessageRef.current.style.opacity = 0;
+    }, 1000);
+  }
+
   async function handleUpdate() {
-    const data = {};
+    const username = props.editUsernameRef.current.value;
+    const password = props.editPasswordRef.current.value;
+    if (!validateStrings([username, password])) {
+      showEditMessage('invalid values.', '#ff6f6f');
+      return;
+    }
+
+    document.body.style.cursor = 'wait';
     if (
-      props.editUsernameRef.current.value === props.account.username &&
-      props.editPasswordRef.current.value === props.account.password
+      username === props.account['username'] &&
+      password === props.account['password']
     ) {
-      showAlert('updted.');
+      document.body.style.cursor = 'default';
+      showEditMessage('Updated successfully!');
+      return;
+    }
+
+    const result = await updateAccount([
+      props.account['origin'],
+      {
+        username,
+        password,
+      },
+      props.token,
+      showEditMessage,
+    ]);
+
+    if (result) {
+      props.account['username'] = username;
+      props.account['password'] = password;
+      props.setAccount(props.account);
     }
   }
 
@@ -74,9 +105,6 @@ export default function EditAccount({ props }) {
                 <label>Username</label>
                 <input
                   ref={props.editUsernameRef}
-                  onChange={(e) =>
-                    setUsername(props.editUsernameRef.current.value)
-                  }
                   type='text'
                   className='form-control'
                   placeholder='username'
@@ -88,9 +116,6 @@ export default function EditAccount({ props }) {
                 <div className='d-flex'>
                   <input
                     ref={props.editPasswordRef}
-                    onChange={(e) =>
-                      setPassword(props.editPasswordRef.current.value)
-                    }
                     type='password'
                     className='form-control'
                     placeholder='password'
@@ -102,10 +127,8 @@ export default function EditAccount({ props }) {
             </div>
           </div>
           <div className='modal-footer'>
-            <Spinner spinner={spinnerRef} style={config.editAccount.spinner} />
-
             <div ref={buttonGroupRef} className='btn-group' role='group'>
-              <label>asdasda</label>
+              <label ref={editMessageRef} id='edit-message'></label>
               <button
                 type='button'
                 className='btn btn-secondary'

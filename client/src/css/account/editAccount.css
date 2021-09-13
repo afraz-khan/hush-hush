@@ -3,6 +3,11 @@
 }
 
 .btn-group label {
-  margin-top: 10px;
   padding-right: 10px;
+}
+
+#edit-message {
+  color: #088f30;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
