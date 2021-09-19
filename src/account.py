@@ -47,16 +47,19 @@ class Account:
 		except KeyError as e:
 			return None
 
-	def search(self, term):
-		result=[]
-		term.strip()
-		words = term.split()
+	def search(self, term = ''):
 		data = [x for x in self.load_creds_list()]
-		for word in words:
-			for record in data:
-				if(word.lower() in record['origin'].lower() and record not in result):
-					result.append(record)
-		return result
+		if(term != ''):
+			result=[]
+			term.strip()
+			words = term.split()
+			data = [x for x in self.load_creds_list()]
+			for word in words:
+				for record in data:
+					if(word.lower() in record['origin'].lower() and record not in result):
+						result.append(record)
+			return result
+		return data
 
 	def delete_account(self, origin):
 		deleted_account = self.cipher.pop(self.key_hash(origin), None)

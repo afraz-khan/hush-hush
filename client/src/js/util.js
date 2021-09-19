@@ -132,12 +132,46 @@ async function searchAccounts(params) {
   }
 }
 
-async function updateAccount(params) {
-  const [origin, body, token, showEditMessage] = params;
+async function fetchAllAccounts(params) {
+  const [token, setData, showAlert] = params;
+
   try {
-    const data = await ajaxRequest('PUT', `accounts/${origin}`, body, {
-      Authorization: token,
-    });
+    const data = await ajaxRequest(
+      'GET',
+      'accounts',
+      {},
+      { Authorization: token }
+    );
+    const respObj = await data.json();
+
+    if (respObj.status_code === 200) {
+      setData(respObj.data);
+      document.body.style.cursor = 'default';
+      return true;
+    }
+    throw new Error(respObj.message);
+  } catch (error) {
+    console.error(error);
+    document.body.style.cursor = 'default';
+    showAlert(error.message);
+    return false;
+    // setTimeout(() => {
+    //   alert(error.message);
+    // }, 1000);
+  }
+}
+
+async function updateAccount(params) {
+  const [props, body, showEditMessage] = params;
+  try {
+    const data = await ajaxRequest(
+      'PUT',
+      `accounts/${props.account['origin']}`,
+      body,
+      {
+        Authorization: props.token,
+      }
+    );
     const respObj = await data.json();
 
     if (respObj.status_code === 200) {
@@ -154,6 +188,38 @@ async function updateAccount(params) {
   }
 }
 
+async function deleteAccount(params) {
+  const [props, showEditMessage] = params;
+  try {
+    const data = await ajaxRequest(
+      'DELETE',
+      `accounts/${props.account['origin']}`,
+      {},
+      {
+        Authorization: props.token,
+      }
+    );
+    const respObj = await data.json();
+    console.log($('.btn-group')[1].se);
+    if (respObj.status_code === 200) {
+      document.body.style.cursor = 'default';
+      props.editUsernameRef.current.disabled = true;
+      props.editPasswordRef.current.disabled = true;
+      props.updateButtonRef.current.disabled = true;
+      props.deleteButtonRef.current.disabled = true;
+      showEditMessage('Record deleted successfully!');
+      return true;
+    }
+    throw new Error(respObj.message);
+  } catch (error) {
+    console.error(error);
+    document.body.style.cursor = 'default';
+    showEditMessage(error.message, '#ff6f6f');
+    return false;
+  }
+}
+
+// validate empty strings & strings with only space chars in it
 function validateStrings(values) {
   let isValid = true;
   for (let i = 0; i < values.length; i++) {
@@ -170,6 +236,8 @@ export {
   addAccount,
   searchAccounts,
   updateAccount,
+  deleteAccount,
+  fetchAllAccounts,
   passwordVisibility,
   validateStrings,
 };

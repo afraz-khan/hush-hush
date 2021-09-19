@@ -16,6 +16,14 @@ const styleConfig = {
       },
     },
   },
+  csvExport: {
+    headers: [
+      { label: 'Origin', key: 'origin' },
+      { label: 'Username', key: 'username' },
+      { label: 'Password', key: 'password' },
+    ],
+    fileName: 'secrets.csv',
+  },
 };
 
 export default styleConfig;

@@ -1,7 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import PasswordEye from '../PasswordEye';
-import '../../css/account/editAccount.css';
-import { updateAccount, validateStrings } from '../../js/util';
+import { useEffect, useRef } from 'react';
+import PasswordEye from '../../PasswordEye';
+import '../../../css/account/editAccount.css';
+import {
+  updateAccount,
+  deleteAccount,
+  validateStrings,
+} from '../../../js/util';
 
 export default function EditAccount({ props }) {
   const buttonGroupRef = useRef(null);
@@ -51,12 +55,11 @@ export default function EditAccount({ props }) {
     }
 
     const result = await updateAccount([
-      props.account['origin'],
+      props,
       {
         username,
         password,
       },
-      props.token,
       showEditMessage,
     ]);
 
@@ -65,6 +68,11 @@ export default function EditAccount({ props }) {
       props.account['password'] = password;
       props.setAccount(props.account);
     }
+  }
+
+  async function handleDelete() {
+    document.body.style.cursor = 'wait';
+    await deleteAccount([props, showEditMessage]);
   }
 
   return (
@@ -136,12 +144,17 @@ export default function EditAccount({ props }) {
                 Close
               </button>
               <button
+                ref={props.updateButtonRef}
                 onClick={handleUpdate}
                 type='button'
                 className='btn btn-primary'>
                 Save changes
               </button>
-              <button type='button' className='btn btn-danger'>
+              <button
+                ref={props.deleteButtonRef}
+                onClick={handleDelete}
+                type='button'
+                className='btn btn-danger'>
                 Delete
               </button>
             </div>

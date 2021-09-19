@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
-import '../../css/account/searchAccount.css';
-import { searchAccounts } from '../../js/util';
-import { AlertContext } from '../AlertContext';
-import Spinner from '../Spinner';
+import React, { useRef, useState, useContext } from 'react';
+import '../../../css/account/searchAccount.css';
+import { searchAccounts } from '../../../js/util';
+import { AlertContext } from '../../AlertContext';
+import Spinner from '../../Spinner';
 import EditAccount from './EditAccount';
 
 export default function SearchAccount({ token }) {
@@ -18,6 +18,8 @@ export default function SearchAccount({ token }) {
   const editOriginRef = useRef(null);
   const editUsernameRef = useRef(null);
   const editPasswordRef = useRef(null);
+  const updateButtonRef = useRef(null);
+  const deleteButtonRef = useRef(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -51,6 +53,11 @@ export default function SearchAccount({ token }) {
   function onOriginSelect(e) {
     const account = data.find((record) => record['origin'] === e.target.value);
     setAccount(account);
+    editUsernameRef.current.disabled = false;
+    editPasswordRef.current.disabled = false;
+    updateButtonRef.current.disabled = false;
+    deleteButtonRef.current.disabled = false;
+
     editOriginRef.current.value = account['origin'];
     editUsernameRef.current.value = account['username'];
     editPasswordRef.current.value = account['password'];
@@ -110,6 +117,8 @@ export default function SearchAccount({ token }) {
           editOriginRef,
           editUsernameRef,
           editPasswordRef,
+          updateButtonRef,
+          deleteButtonRef,
           account,
           setAccount,
         }}

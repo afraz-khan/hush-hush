@@ -2,10 +2,6 @@
   text-align: left;
 }
 
-/* .search-account label {
-  border-bottom: 1px solid #575757;
-} */
-
 .search-account label h6 {
   border-bottom: 1px solid #6c757d !important;
   color: #6c757d !important;
@@ -40,7 +36,7 @@
 }
 
 #nothing-found {
-  color: #ff6f6f;
+  color: #6c757d;
   margin-top: 10px;
   display: none;
 }

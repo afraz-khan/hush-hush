@@ -92,14 +92,15 @@ def get_account(origin):
 		return Constant.create_response(status_code, message), status_code
 
 @app.route('/accounts', methods=['GET'])
-def search_by_origin():
+def search_accounts():
 	status_code = 500
 	try:
+		account = Account()
 		if('origin' in request.args.keys()):
-			account = Account()
-			return Constant.create_response(200, 'success', account.search(request.args['origin'])), 200
-		status_code = 400
-		raise Exception(('invalid_request'))
+			data = account.search(request.args['origin'].strip())
+		else:
+			data = account.search()
+		return Constant.create_response(200, 'success', data), 200
 	except Exception as e:
 		print('ERROR: ' , e)
 		message = e.__str__()
