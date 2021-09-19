@@ -1,0 +1,9 @@
+footer {
+  text-align: justify;
+}
+
+@media screen and (max-width: 480px) {
+  footer {
+    text-align: center;
+  }
+}

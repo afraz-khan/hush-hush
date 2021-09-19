@@ -10,7 +10,6 @@ export default function SearchAccount({ token }) {
   const [data, setData] = useState([]);
   const [account, setAccount] = useState({});
   const selectRef = useRef(null);
-  const spinnerRef = useRef(null);
   const inputRef = useRef(null);
   const nothingFoundRef = useRef(null);
 
@@ -24,15 +23,14 @@ export default function SearchAccount({ token }) {
   async function handleSubmit(e) {
     e.preventDefault();
     hideAlert();
-    spinnerRef.current.style.display = 'inline-block';
-    nothingFoundRef.current.style.display = 'none';
+    document.body.style.cursor = 'wait';
+    nothingFoundRef.current.style.visibility = 'hidden';
     await searchAccounts([
       inputRef.current.value,
       setData,
       token,
       showAlert,
       selectRef,
-      spinnerRef,
       nothingFoundRef,
     ]);
   }
@@ -72,6 +70,10 @@ export default function SearchAccount({ token }) {
           <label>
             <h6>Search here </h6>
           </label>
+          <h6 ref={nothingFoundRef} id='nothing-found'>
+            ( nothing found . . . )
+          </h6>
+
           <div className='input-group'>
             <input
               onChange={onInputChange}
@@ -105,12 +107,9 @@ export default function SearchAccount({ token }) {
               );
             })}
           </select>
-          <h6 ref={nothingFoundRef} id='nothing-found'>
-            nothing found . . .
-          </h6>
         </div>
       </form>
-      <Spinner spinner={spinnerRef} />
+
       <EditAccount
         props={{
           token,

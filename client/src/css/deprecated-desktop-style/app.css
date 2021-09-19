@@ -52,8 +52,13 @@ nav button {
 }
 
 footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
   padding: 1.5%;
-  font-size: 15px;
+  font-size: 1.1vw;
   border-top: 1px solid #575757;
   color: #575757;
 }
@@ -74,6 +79,13 @@ footer li:hover {
   cursor: pointer;
 }
 
+@media screen and (max-width: 950px) {
+  footer {
+    position: relative;
+    margin-top: 5vw;
+  }
+}
+
 #github-icon span {
   margin-right: 1vw;
   color: #575757;
@@ -84,7 +96,13 @@ footer li:hover {
 }
 
 @media screen and (max-width: 480px) {
-  footer {
-    text-align: center;
+  .social-icon {
+    height: 2vh;
+  }
+}
+
+@media screen and (max-width: 275px) {
+  .social-icon {
+    height: 1vh;
   }
 }

@@ -5,13 +5,18 @@
 }
 
 .login-wrapper input {
+  font-size: 1.2vw;
   border: 2px solid white;
 }
 
 .login-wrapper label {
   color: #575757;
-  font-size: 20px;
+  font-size: 1.5vw;
   font-weight: bold;
+}
+
+.login-wrapper button {
+  font-size: 1.1vw;
 }
 
 .login-header {
@@ -28,7 +33,7 @@
 }
 
 .login-header h1 {
-  font-size: 35px;
+  font-size: 3vw;
   text-align: center;
 }
 
@@ -39,23 +44,4 @@
   border-top: 0.2vw solid #9b9b9b;
   margin: 1vw 0;
   padding: 0;
-}
-
-form {
-  margin: 30px;
-}
-
-footer {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin-bottom: 0px;
-}
-
-@media screen and (max-width: 950px) {
-  footer {
-    position: relative;
-    margin-top: 5vw;
-  }
 }

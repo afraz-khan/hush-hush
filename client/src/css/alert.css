@@ -1,25 +1,11 @@
 .alert {
   position: fixed;
-  top: 15vh;
-  right: 1vh;
-  font-size: 1vw;
-  width: 40%;
+  bottom: 15vh;
+  left: 1vh;
+  font-size: 15px;
   z-index: 2;
 }
 
 .alert .close {
   padding: 0.5vw 1vw;
-  font-size: 2vw;
-}
-
-@media screen and (max-width: 600px) {
-  .alert .close {
-    font-size: 3vw;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .alert .close {
-    font-size: 4vw;
-  }
 }

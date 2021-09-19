@@ -5,6 +5,7 @@ import SearchAccount from './account/SearchAccount';
 import logo from '../../images/logo.svg';
 import CsvExportButton from './CsvExportButton';
 import Footer from '../Footer';
+import '../../css/dashboard.css';
 
 export default function Dashboard({ token, unsetToken }) {
   function anonSays() {
@@ -59,8 +60,8 @@ export default function Dashboard({ token, unsetToken }) {
               <div className='p-2'></div>
               <div className='p-2'></div>
             </div>
-            <Footer />
           </div>
+          <Footer> </Footer>
         </Route>
       </Switch>
     </BrowserRouter>

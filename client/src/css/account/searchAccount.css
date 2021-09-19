@@ -36,7 +36,8 @@
 }
 
 #nothing-found {
-  color: #6c757d;
-  margin-top: 10px;
-  display: none;
+  color: #007bff;
+  margin-left: 10px;
+  display: inline-flex;
+  visibility: hidden;
 }

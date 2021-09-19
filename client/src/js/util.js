@@ -84,15 +84,7 @@ async function addAccount(params) {
 }
 
 async function searchAccounts(params) {
-  const [
-    text,
-    setData,
-    token,
-    showAlert,
-    selectRef,
-    spinnerRef,
-    nothingFoundRef,
-  ] = params;
+  const [text, setData, token, showAlert, selectRef, nothingFoundRef] = params;
 
   try {
     const data = await ajaxRequest(
@@ -111,24 +103,21 @@ async function searchAccounts(params) {
         selectRef.current.style.display = 'inline-block';
       } else {
         selectRef.current.style.display = 'none';
-        nothingFoundRef.current.style.display = 'inline-block';
+        nothingFoundRef.current.style.visibility = 'visible';
         setTimeout(() => {
-          nothingFoundRef.current.style.display = 'none';
+          nothingFoundRef.current.style.visibility = 'hidden';
         }, 2000);
       }
-      spinnerRef.current.style.display = 'none';
+      document.body.style.cursor = 'default';
       setData(respObj.data);
       return;
     }
     throw new Error(respObj.message);
   } catch (error) {
     showAlert(error.message);
-    spinnerRef.current.style.display = 'none';
+    document.body.style.cursor = 'default';
     selectRef.current.style.display = 'none';
-    nothingFoundRef.current.style.display = 'none';
-    // setTimeout(() => {
-    //   alert(error.message);
-    // }, 1000);
+    nothingFoundRef.current.style.visibility = 'hidden';
   }
 }
 
