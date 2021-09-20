@@ -22,7 +22,16 @@ const styleConfig = {
       { label: 'Username', key: 'username' },
       { label: 'Password', key: 'password' },
     ],
-    fileName: 'secrets.csv',
+    fileName: 'credentials.csv',
+  },
+  csvImport: {
+    tooltip: {
+      tooltipTitle:
+        'Each line in the CSV file must follow below format. ' +
+        'Values should be comma separated in given order, "[origin], [username], [password]"',
+      width: '315px',
+      text: 'CSV file format',
+    },
   },
 };
 

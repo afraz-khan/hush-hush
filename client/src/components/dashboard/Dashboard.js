@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddAccount from './account/AddAccount';
 import SearchAccount from './account/SearchAccount';
 import logo from '../../images/logo.svg';
-import CsvExportButton from './CsvExportButton';
+import CsvExport from './CsvExport';
+import CsvImport from './CsvImport';
 import Footer from '../Footer';
 import '../../css/dashboard.css';
 
@@ -54,11 +55,8 @@ export default function Dashboard({ token, unsetToken }) {
             <div className='d-flex justify-content-between flex-wrap'>
               <AddAccount token={token}></AddAccount>
               <SearchAccount token={token}></SearchAccount>
-              <CsvExportButton token={token} />
-              <div className='p-2'></div>
-              <div className='p-2'></div>
-              <div className='p-2'></div>
-              <div className='p-2'></div>
+              <CsvExport token={token} />
+              <CsvImport token={token} />
             </div>
           </div>
           <Footer> </Footer>

@@ -1,11 +1,12 @@
 import React, { useRef, useState, useContext } from 'react';
 import { CSVLink } from 'react-csv';
-import '../../css/csvExportButton.css';
+import '../../css/csvImportButton.css';
 import config from '../../js/config';
 import { fetchAllAccounts } from '../../js/util';
 import { AlertContext } from '../AlertContext';
+import Tooltip from '../Tooltip';
 
-export default function CsvExportButton({ token }) {
+export default function CsvImport({ token }) {
   const [alert, hideAlert, showAlert] = useContext(AlertContext);
   const [data, setData] = useState([]);
   const exportButtonRef = useRef(null);
@@ -21,7 +22,7 @@ export default function CsvExportButton({ token }) {
   }
 
   return (
-    <div id='csv-export' className='p-2'>
+    <div id='csv-import' className='p-2'>
       <CSVLink
         ref={csvLinkRef}
         filename={config.csvExport.fileName}
@@ -33,9 +34,11 @@ export default function CsvExportButton({ token }) {
         ref={exportButtonRef}
         type='button'
         className='btn btn-dark'>
-        <i className='fa fa-download'></i> Export data{' '}
-        <small>( CSV format )</small>
+        <i className='fa fa-upload'></i> Import Credentials
       </button>
+      <a href='https://google.com'>
+        <Tooltip props={config.csvImport.tooltip} />
+      </a>
     </div>
   );
 }
