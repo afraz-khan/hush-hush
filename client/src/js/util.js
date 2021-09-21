@@ -69,7 +69,7 @@ async function addAccount(params) {
 
     if (respObj.status_code === 200) {
       document.body.style.cursor = 'default';
-      showAlert('Credentials saved successfully.');
+      showAlert('Credentials saved successfully.', 'message');
       originRef.current.value = null;
       usernameRef.current.value = null;
       passwordRef.current.value = null;

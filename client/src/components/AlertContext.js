@@ -8,12 +8,21 @@ export const AlertContextProvider = ({ children }) => {
   const [alert, setAlert] = useState({
     className: 'hide',
     message: null,
+    icon: 'fa fa-exclamation-triangle',
   });
 
-  const showAlert = (message) => {
+  const showAlert = (message, type = 'error') => {
+    let icon = alert.icon;
+    if (type === 'message') {
+      icon = 'fa fa-info-circle';
+    } else {
+      icon = 'fa fa-exclamation-triangle';
+    }
+
     setAlert({
       className: 'show',
       message,
+      icon,
     });
     setTimeout(() => {
       hideAlert();
@@ -32,7 +41,7 @@ export const AlertContextProvider = ({ children }) => {
       <div
         className={`alert alert-warning alert-dismissible fade ${alert.className}`}>
         <strong>
-          <i className='fa fa-exclamation-triangle'></i>
+          <i className={alert.icon}></i>
         </strong>
         {'   '}
         {alert.message}
