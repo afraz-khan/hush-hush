@@ -31,29 +31,38 @@ class Account:
 		'''
 
 		already_exists = self.findOneByOrigin(data['origin'])
-		if(already_exists):
+		if already_exists:
 			return None
-		self.cipher[self.key_hash(data['origin'])] = self.encrypt_blob(data['origin'], data['username'], data['password'])
-		self.update_hash()
+		self.cipher[self.__key_hash(data['origin'])] = self.__encrypt_blob(data['origin'], data['username'], data['password'])
+		self.__update_hash()
 		return True
 	
+	def bulk_create(self, data):
+		for account_obj in data:
+			self.create(account_obj)
+	
+	def bulk_lookup(self, data):
+		for account_obj in data:
+			account = self.findOneByOrigin(account_obj['origin'])
+			if account: return account
+			
 	def findOneByOrigin(self, origin):
 		'''searchs a single origin of a digital account
 		'''
 
-		origin_hash = self.key_hash(origin)
+		origin_hash = self.__key_hash(origin)
 		try:
-			return self.construct_creds(self.cipher[origin_hash])
+			return self.__construct_creds(self.cipher[origin_hash])
 		except KeyError as e:
 			return None
 
 	def search(self, term = ''):
-		data = [x for x in self.load_creds_list()]
+		data = [x for x in self.__load_creds_list()]
 		if(term != ''):
 			result=[]
 			term.strip()
 			words = term.split()
-			data = [x for x in self.load_creds_list()]
+			data = [x for x in self.__load_creds_list()]
 			for word in words:
 				for record in data:
 					if(word.lower() in record['origin'].lower() and record not in result):
@@ -62,9 +71,9 @@ class Account:
 		return data
 
 	def delete_account(self, origin):
-		deleted_account = self.cipher.pop(self.key_hash(origin), None)
+		deleted_account = self.cipher.pop(self.__key_hash(origin), None)
 		if(deleted_account):
-			self.update_hash()
+			self.__update_hash()
 			return True
 		return False
 
@@ -73,25 +82,25 @@ class Account:
 		if(account):
 			for prop in data:
 				account[prop] = data[prop]
-			self.cipher[self.key_hash(origin)] = self.encrypt_blob(origin, account['username'], account['password'])
-			self.update_hash()
+			self.cipher[self.__key_hash(origin)] = self.__encrypt_blob(origin, account['username'], account['password'])
+			self.__update_hash()
 			return True
 		return False
 
-	def update_hash(self):
+	def __update_hash(self):
 		encrypted = self.fernet.encrypt(pickle.dumps(self.cipher))
 		
 		f = open(os.environ['CIPHER'],'wb')
 		f.write(encrypted)
 		f.close()
 
-	def load_creds_list(self):
+	def __load_creds_list(self):
 		data = []
 		for k in self.cipher.keys():
-			data.append(self.construct_creds(self.cipher[k]))
+			data.append(self.__construct_creds(self.cipher[k]))
 		return data
 
-	def encrypt_blob(self, origin, username, password):
+	def __encrypt_blob(self, origin, username, password):
 		'''
 		1. reverses binary representation of both username & password.
 		2. converts to bytes with pickle and creates a respective bytes array using
@@ -99,9 +108,9 @@ class Account:
 		'''
 
 		data = [
-			self.string_to_binary(origin)[::-1],
-			self.string_to_binary(username)[::-1],
-			self.string_to_binary(password)[::-1]
+			self.__string_to_binary(origin)[::-1],
+			self.__string_to_binary(username)[::-1],
+			self.__string_to_binary(password)[::-1]
 		]
 		recipient_key = RSA.import_key(open("receiver.pem").read())
 		session_key = get_random_bytes(16)
@@ -116,22 +125,22 @@ class Account:
 
 		return [enc_session_key, cipher_aes.nonce, tag, ciphertext]
 
-	def construct_creds(self, creds_data):
-		raw_origin, raw_username, raw_password = [ x.split() for x in self.decrypt_blob(creds_data)]
+	def __construct_creds(self, creds_data):
+		raw_origin, raw_username, raw_password = [ x.split() for x in self.__decrypt_blob(creds_data)]
 		origin = username = password = ''
 		for i in reversed(range(len(raw_username))):
-			username += self.binary_to_string(raw_username[i][::-1])
+			username += self.__binary_to_string(raw_username[i][::-1])
 		for i in reversed(range(len(raw_password))):
-			password += self.binary_to_string(raw_password[i][::-1])
+			password += self.__binary_to_string(raw_password[i][::-1])
 		for i in reversed(range(len(raw_origin))):
-			origin += self.binary_to_string(raw_origin[i][::-1])
+			origin += self.__binary_to_string(raw_origin[i][::-1])
 		return {
 			'origin': origin,
 			'username': username,
 			'password': password
 		}
 
-	def decrypt_blob(self, data):
+	def __decrypt_blob(self, data):
 		'''
 		1. takes bytes blob of a digital username/password pair and decodes it
 		   from bytes to regular form using pickle.
@@ -155,12 +164,12 @@ class Account:
 		cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
 		return pickle.loads(cipher_aes.decrypt_and_verify(ciphertext, tag))
 
-	def string_to_binary(self, string):
+	def __string_to_binary(self, string):
 		'''returns binary representation of a string
 		'''
 		return ' '.join('{:08b}'.format(d) for d in bytearray(string, 'utf-8'))
 
-	def binary_to_string(self, string):
+	def __binary_to_string(self, string):
 		'''converts back a binary string to normal ascii string
 		'''
 
@@ -173,15 +182,10 @@ class Account:
 				ascii_string += ascii_character   # Append character to `ascii_string`
 		return ascii_string
 
-	def key_hash(self, string):
+	def __key_hash(self, string):
 		'''creates binary rep of a string, reverses that binary rep and returns 
 		a hash using below hashlib algo.
 		'''
 
-		binary_key = self.string_to_binary(string)[::-1] # reverse the binary string
+		binary_key = self.__string_to_binary(string)[::-1] # reverse the binary string
 		return hashlib.sha256(binary_key.encode(encoding='UTF-8', errors='strict')).hexdigest()
-	
-# asd = Account()
-# print(asd.string_to_binary('afraz'))
-# asd.create(username='waleed', password='1234', origin='MS')
-# print(asd.search('FS'))

@@ -6,6 +6,7 @@ import flask
 from src.auth import Auth
 from src.account import Account
 from src.constant import Constant
+from src.validator import Validator
 from flask_cors import CORS
 
 os.environ['CIPHER_SECRET'] = 'TXN2TE15aWZpb0l0NFZSRjM4MEMwRHNxTXY2QmF6UDdqRjhoMC1VZDhrUT0='
@@ -52,6 +53,30 @@ def user_auth():
 
 @app.route('/accounts', methods=['POST'])
 def add_account():
+	status_code = 500
+	try:
+		data = json.loads(request.data)
+		if Validator.validate_post_body(data):
+			account = Account()
+			lookup_result = account.bulk_lookup(data)
+			
+			if lookup_result is None:
+				account.bulk_create(data)
+				return Constant.create_response(200, 'success'), 200
+			status_code = 409
+			raise Exception('Origin "{}" already exists.'.format(lookup_result['origin']))
+
+		status_code = 400
+		raise Exception('invalid body')
+	except Exception as e:
+		print('ERROR: ' , e)
+		message = e.__str__()
+		if status_code == 500:
+			message = 'Seems like, demodogs are not happy 🥲.'
+		return Constant.create_response(status_code, message), status_code
+
+@app.route('/accounts', methods=['POST'])
+def bulk_import_accounts():
 	status_code = 500
 	try:
 		data = json.loads(request.data)
@@ -115,8 +140,7 @@ def update_account(origin):
 		data = json.loads(request.data)
 		allowedFields = ['username', 'password']
 		account = Account()
-		print(all((k in allowedFields and data[k] != '' and data[k] != ' ') for k in data.keys()))
-		if(all((k in allowedFields and data[k] != '' and data[k] != ' ') for k in data.keys())):
+		if(Validator.validate_update_body(data, allowedFields)):
 			isUpdated = account.update_account(origin, data)
 			if(isUpdated):
 				return Constant.create_response(200, 'success'), 200

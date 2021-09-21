@@ -56,11 +56,13 @@ async function addAccount(params) {
     const data = await ajaxRequest(
       'POST',
       'accounts',
-      {
-        origin,
-        username,
-        password,
-      },
+      [
+        {
+          origin,
+          username,
+          password,
+        },
+      ],
       { Authorization: token }
     );
     const respObj = await data.json();
