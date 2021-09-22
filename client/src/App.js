@@ -1,5 +1,5 @@
 import './css/app.css';
-import './css/account/account.css';
+import './css/dashboard/account/account.css';
 import Login from './components/auth/Login';
 import useToken from './components/auth/useToken';
 import { AlertContextProvider } from './components/AlertContext';

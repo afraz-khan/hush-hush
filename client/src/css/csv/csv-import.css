@@ -6,22 +6,13 @@
 
 #csv-import button {
   margin-top: 3vh;
-  height: 80px;
-  width: 250px;
-  color: #4e4e4e;
-  background-color: rgb(215, 255, 213);
-  border-color: #9b9b9b;
-}
-
-#csv-import button:hover {
-  background-color: rgb(229, 253, 228);
 }
 
 #csv-import a {
   text-decoration: none;
-  margin-right: 9vw;
 }
 
 #csv-import .tooltip2:hover {
   cursor: pointer;
+  margin-left: 50px;
 }

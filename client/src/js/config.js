@@ -32,6 +32,7 @@ const styleConfig = {
       width: '315px',
       text: 'CSV file format',
     },
+    fileTypesAllowed: ['text/csv'],
   },
 };
 

@@ -1,10 +1,4 @@
-#csv-export {
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-}
-
-#csv-export button {
+#csv-btn {
   height: 80px;
   width: 250px;
   color: #4e4e4e;
@@ -12,6 +6,6 @@
   border-color: #9b9b9b;
 }
 
-#csv-export button:hover {
+#csv-btn:hover {
   background-color: rgb(229, 253, 228);
 }

@@ -2,7 +2,7 @@ import React, { useRef, useState, useContext } from 'react';
 import { addAccount } from '../../../js/util';
 import { AlertContext } from '../../AlertContext';
 import PasswordEye from '../../PasswordEye';
-import '../../../css/account/addAccount.css';
+import '../../../css/dashboard/account/add-account.css';
 import '../../../css/tooltip.css';
 import Tooltip from '../../Tooltip';
 import config from '../../../js/config';

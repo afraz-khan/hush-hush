@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import PasswordEye from '../../PasswordEye';
-import '../../../css/account/editAccount.css';
+import '../../../css/dashboard/account/edit-account.css';
 import {
   updateAccount,
   deleteAccount,
@@ -78,17 +78,15 @@ export default function EditAccount({ props }) {
   return (
     <div
       className='modal fade'
-      id='accountModal'
+      id='account-modal'
       tabIndex='-1'
       role='dialog'
-      aria-labelledby='accountModal'
+      aria-labelledby='account-modal'
       aria-hidden='true'>
       <div className='modal-dialog modal-lg' role='document'>
         <div className='modal-content'>
           <div className='modal-header'>
-            <h5 className='modal-title' id='exampleModalLabel'>
-              Account Details
-            </h5>
+            <h5 className='modal-title'>Account Details</h5>
             <button
               type='button'
               className='close'

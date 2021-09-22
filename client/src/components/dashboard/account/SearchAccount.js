@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from 'react';
-import '../../../css/account/searchAccount.css';
+import '../../../css/dashboard/account/search-account.css';
 import { searchAccounts } from '../../../js/util';
 import { AlertContext } from '../../AlertContext';
 import Spinner from '../../Spinner';
@@ -101,7 +101,7 @@ export default function SearchAccount({ token }) {
                   key={i}
                   onClick={onOriginSelect}
                   data-toggle='modal'
-                  data-target='#accountModal'>
+                  data-target='#account-modal'>
                   {record.origin}
                 </option>
               );

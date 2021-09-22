@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddAccount from './account/AddAccount';
 import SearchAccount from './account/SearchAccount';
 import logo from '../../images/logo.svg';
-import CsvExport from './CsvExport';
-import CsvImport from './CsvImport';
+import CsvExport from './csv/CsvExport';
+import CsvImport from './csv/CsvImport';
 import Footer from '../Footer';
-import '../../css/dashboard.css';
+import '../../css/dashboard/dashboard.css';
 
 export default function Dashboard({ token, unsetToken }) {
   function anonSays() {
