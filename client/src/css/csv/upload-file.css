@@ -1,8 +1,13 @@
-.modal-header button {
+.modal button {
   margin-top: 0% !important;
+}
+
+.close {
   padding-top: 0% !important;
+  padding-bottom: 0% !important;
 }
 
 .modal-footer {
+  border-top: none;
   padding: 0%;
 }
