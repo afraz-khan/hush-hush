@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../../../css/csv/upload-file.css';
 import config from '../../../js/config';
 import { validateStrings } from '../../../js/util';
 
 export default function UploadFile(props) {
   const messageRef = useRef(null);
+  const filenameRef = useRef(null);
 
   function showMessage(message, color = '#088f30') {
     messageRef.current.innerText = message;
@@ -13,6 +14,12 @@ export default function UploadFile(props) {
     setTimeout(() => {
       messageRef.current.style.opacity = 0;
     }, 2000);
+  }
+
+  function showFilename(name) {
+    messageRef.current.innerText = `📋 ${name}`;
+    messageRef.current.style.color = '#575757';
+    messageRef.current.style.opacity = 1;
   }
 
   function validateFileType(file) {
@@ -73,28 +80,33 @@ export default function UploadFile(props) {
     return JSON.stringify(result);
   }
 
+  function onFileLoad(e) {
+    try {
+      const lines = validateData(e.target.result);
+
+      if (lines) {
+        const data = JSON.parse(convertCSVToJSON(lines));
+        showFilename(filenameRef.current);
+        console.log(data);
+        return;
+      }
+      throw new Error('invalid data');
+    } catch (error) {
+      filenameRef.current = '';
+      showMessage(error.message, 'red');
+      return;
+    }
+  }
+
   async function readFile(e) {
     e.preventDefault();
     const file = e.target.files[0];
 
     if (validateFileType(file)) {
+      filenameRef.current = file.name;
       const reader = new FileReader();
 
-      reader.onloadend = (e) => {
-        try {
-          const lines = validateData(e.target.result);
-
-          if (lines) {
-            const data = JSON.parse(convertCSVToJSON(lines));
-            console.log(data);
-            return;
-          }
-          throw new Error('invalid data');
-        } catch (error) {
-          showMessage(error.message, 'red');
-          return;
-        }
-      };
+      reader.onloadend = onFileLoad;
       reader.readAsText(file);
       return;
     }
@@ -141,7 +153,7 @@ export default function UploadFile(props) {
             </div>
             <div className='modal-footer'>
               <div className='btn-group' role='group'>
-                <label ref={messageRef} id='edit-message'></label>
+                <label ref={messageRef}></label>
                 <button
                   type='button'
                   className='btn btn-secondary'
