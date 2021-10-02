@@ -12,6 +12,7 @@ export default function SearchAccount({ token }) {
   const selectRef = useRef(null);
   const inputRef = useRef(null);
   const nothingFoundRef = useRef(null);
+  const spinnerRef = useRef(null);
 
   // Modal edit fields
   const editOriginRef = useRef(null);
@@ -25,6 +26,8 @@ export default function SearchAccount({ token }) {
     hideAlert();
     document.body.style.cursor = 'wait';
     nothingFoundRef.current.style.visibility = 'hidden';
+    spinnerRef.current.classList.remove('fa-search');
+    spinnerRef.current.classList.add('fa-spinner');
     await searchAccounts([
       inputRef.current.value,
       setData,
@@ -33,6 +36,8 @@ export default function SearchAccount({ token }) {
       selectRef,
       nothingFoundRef,
     ]);
+    spinnerRef.current.classList.remove('fa-spinner');
+    spinnerRef.current.classList.add('fa-search');
   }
 
   function selectSize() {
@@ -62,9 +67,7 @@ export default function SearchAccount({ token }) {
   }
 
   return (
-    <div
-      className='search-account p-2'
-      onMouseLeave={() => (selectRef.current.style.display = 'none')}>
+    <div className='search-account p-2'>
       <form className='row' onSubmit={handleSubmit}>
         <div className='col-auto'>
           <label>
@@ -87,13 +90,20 @@ export default function SearchAccount({ token }) {
             <div className='input-group-append'>
               <div className='btn-group' role='group'>
                 <button type='submit' className='btn btn-primary'>
-                  <i className='fa fa-search'></i>
+                  <i
+                    ref={spinnerRef}
+                    id='search-icon'
+                    className='fa fa-search'></i>
                 </button>
               </div>
             </div>
           </div>
 
-          <select ref={selectRef} className='custom-select' size={selectSize()}>
+          <select
+            onBlur={() => (selectRef.current.style.display = 'none')}
+            ref={selectRef}
+            className='custom-select'
+            size={selectSize()}>
             {data.map((record, i) => {
               return (
                 <option

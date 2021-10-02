@@ -45,6 +45,7 @@ async function addAccount(params) {
     origin,
     username,
     password,
+    spinnerRef,
     originRef,
     usernameRef,
     passwordRef,
@@ -68,6 +69,7 @@ async function addAccount(params) {
     const respObj = await data.json();
 
     if (respObj.status_code === 200) {
+      spinnerRef.current.style.display = 'none';
       document.body.style.cursor = 'default';
       showAlert('Credentials saved successfully.', 'message');
       originRef.current.value = null;
@@ -77,6 +79,7 @@ async function addAccount(params) {
     }
     throw new Error(respObj.message);
   } catch (error) {
+    spinnerRef.current.style.display = 'none';
     document.body.style.cursor = 'default';
     showAlert(error.message);
   }

@@ -1,3 +1,9 @@
+@media screen and (max-width: 760px) {
+  .add-account #password-eye {
+    max-height: 50%;
+  }
+}
+
 @media screen and (max-width: 576px) {
   .add-account #password-eye {
     min-height: 100%;
@@ -6,4 +12,8 @@
 
 .add-account small {
   text-align: left;
+}
+
+.add-account .spinner-grow {
+  margin-top: 0%;
 }

@@ -84,3 +84,13 @@ footer li:hover {
     text-align: center;
   }
 }
+
+.fa-spinner {
+  animation: move 3s infinite linear;
+}
+
+@keyframes move {
+  100% {
+    transform: rotate(360deg);
+  }
+}

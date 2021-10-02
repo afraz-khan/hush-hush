@@ -1,6 +1,6 @@
 import '../../../css/csv/csv-button.css';
 
-export default function CSVButton({ onClick, buttonRef, type }) {
+export default function CSVButton({ icon, onClick, buttonRef, type }) {
   return (
     <button
       id='csv-btn'
@@ -11,9 +11,9 @@ export default function CSVButton({ onClick, buttonRef, type }) {
       type='button'
       className='btn btn-dark'>
       <i
-        className={
-          type === 'download' ? 'fa fa-download' : 'fa fa-upload'
-        }></i>{' '}
+        ref={icon}
+        className={type === 'download' ? 'fa fa-download' : 'fa fa-upload'}></i>
+      {'  '}
       {type === 'download' ? 'Export Credentials' : 'Import Credentials'}
     </button>
   );

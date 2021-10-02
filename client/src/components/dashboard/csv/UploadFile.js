@@ -7,6 +7,24 @@ export default function UploadFile({ token }) {
   const [importData, setImportData] = useState();
   const messageRef = useRef(null);
   const filenameRef = useRef(null);
+  const loadIconRef = useRef(null);
+  const buttonGroupRef = useRef(null);
+
+  useEffect(() => {
+    window.addEventListener(
+      'resize',
+      () => {
+        if (window.innerWidth < 350) {
+          buttonGroupRef.current.classList.add('btn-group-sm');
+          buttonGroupRef.current.classList.add('btn-group-vertical');
+        } else {
+          buttonGroupRef.current.classList.remove('btn-group-sm');
+          buttonGroupRef.current.classList.remove('btn-group-vertical');
+        }
+      },
+      false
+    );
+  }, []);
 
   function showMessage(message, color = '#575757') {
     messageRef.current.innerText = message;
@@ -120,10 +138,11 @@ export default function UploadFile({ token }) {
     document.body.style.cursor = 'wait';
     showStaticMessage('uploading...');
 
-    console.log(importData);
     if (importData) {
+      loadIconRef.current.classList.add('fa-spinner');
       await bulkImport([importData, showMessage, token]);
       setImportData();
+      loadIconRef.current.classList.remove('fa-spinner');
       return;
     }
     document.body.style.cursor = 'default';
@@ -165,8 +184,14 @@ export default function UploadFile({ token }) {
               </div>
             </div>
             <div className='modal-footer'>
-              <div className='btn-group' role='group'>
-                <label ref={messageRef}></label>
+              <div ref={buttonGroupRef} className='btn-group' role='group'>
+                <div>
+                  <label ref={messageRef}></label>
+                  <i
+                    ref={loadIconRef}
+                    id='load-icon'
+                    className='fa fa-load'></i>
+                </div>
                 <button
                   type='button'
                   className='btn btn-secondary'

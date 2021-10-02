@@ -6,6 +6,7 @@ import '../../../css/dashboard/account/add-account.css';
 import '../../../css/tooltip.css';
 import Tooltip from '../../Tooltip';
 import config from '../../../js/config';
+import Spinner from '../../Spinner';
 
 export default function AddAccount({ token }) {
   const [alert, hideAlert, showAlert] = useContext(AlertContext);
@@ -15,16 +16,18 @@ export default function AddAccount({ token }) {
   const originRef = useRef(null);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+  const spinnerRef = useRef(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
     hideAlert();
     document.body.style.cursor = 'wait';
-
+    spinnerRef.current.style.display = 'flex';
     await addAccount([
       origin,
       username,
       password,
+      spinnerRef,
       originRef,
       usernameRef,
       passwordRef,
@@ -78,6 +81,7 @@ export default function AddAccount({ token }) {
             Add New Credentials
           </button>
         </div>
+        <Spinner spinner={spinnerRef} />
       </form>
     </div>
   );
