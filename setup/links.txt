@@ -1,0 +1,5 @@
+python + flask setup
+https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment
+
+issue with flask
+https://stackoverflow.com/questions/53270646/flask-runs-out-of-virtual-environment

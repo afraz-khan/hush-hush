@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import '../../../css/csv/upload-file.css';
 import config from '../../../js/config';
-import { validateStrings } from '../../../js/util';
+import { validateStrings, bulkImport } from '../../../js/util';
 
-export default function UploadFile(props) {
+export default function UploadFile({ token }) {
+  const [importData, setImportData] = useState();
   const messageRef = useRef(null);
   const filenameRef = useRef(null);
 
-  function showMessage(message, color = '#088f30') {
+  function showMessage(message, color = '#575757') {
     messageRef.current.innerText = message;
     messageRef.current.style.color = color;
     messageRef.current.style.opacity = 1;
@@ -16,8 +17,8 @@ export default function UploadFile(props) {
     }, 2000);
   }
 
-  function showFilename(name) {
-    messageRef.current.innerText = `📋 ${name}`;
+  function showStaticMessage(message) {
+    messageRef.current.innerText = message;
     messageRef.current.style.color = '#575757';
     messageRef.current.style.opacity = 1;
   }
@@ -54,7 +55,7 @@ export default function UploadFile(props) {
     }
 
     for (let i = 1; i < lines.length; i++) {
-      const currentLine = lines[i].split(',');
+      let currentLine = lines[i].split(',');
       if (!validateStrings(currentLine) || currentLine.length !== 3) {
         return false;
       }
@@ -72,30 +73,16 @@ export default function UploadFile(props) {
       const currentline = lines[i].split(',');
 
       for (var j = 0; j < headers.length; j++) {
-        obj[headers[j]] = currentline[j];
+        let key = headers[j].replace(/\n|\r/g, ''); // remove trailing carriage return and newlines
+        const val = currentline[j].replace(/\n|\r/g, '');
+        key = key.toLowerCase();
+
+        obj[key] = val;
       }
       result.push(obj);
     }
 
     return JSON.stringify(result);
-  }
-
-  function onFileLoad(e) {
-    try {
-      const lines = validateData(e.target.result);
-
-      if (lines) {
-        const data = JSON.parse(convertCSVToJSON(lines));
-        showFilename(filenameRef.current);
-        console.log(data);
-        return;
-      }
-      throw new Error('invalid data');
-    } catch (error) {
-      filenameRef.current = '';
-      showMessage(error.message, 'red');
-      return;
-    }
   }
 
   async function readFile(e) {
@@ -106,11 +93,41 @@ export default function UploadFile(props) {
       filenameRef.current = file.name;
       const reader = new FileReader();
 
-      reader.onloadend = onFileLoad;
+      reader.onloadend = (e) => {
+        try {
+          const lines = validateData(e.target.result);
+
+          if (lines) {
+            const data = JSON.parse(convertCSVToJSON(lines));
+            showStaticMessage(`📋 ${filenameRef.current}`);
+            setImportData(data);
+            return;
+          }
+          throw new Error('invalid data');
+        } catch (error) {
+          filenameRef.current = '';
+          showMessage(`⛔️ ${error.message}`, 'red');
+          return;
+        }
+      };
       reader.readAsText(file);
       return;
     }
-    showMessage('invalid file format', 'red');
+    showMessage(`⛔️ invalid file format`, 'red');
+  }
+
+  async function importCredentials(e) {
+    document.body.style.cursor = 'wait';
+    showStaticMessage('uploading...');
+
+    console.log(importData);
+    if (importData) {
+      await bulkImport([importData, showMessage, token]);
+      setImportData();
+      return;
+    }
+    document.body.style.cursor = 'default';
+    showMessage('ℹ️ Select file please...', 'blue');
   }
 
   return (
@@ -134,22 +151,18 @@ export default function UploadFile(props) {
             </button>
           </div>
           <div className='modal-body'>
-            <div className='input-group mb-3'>
+            <div className='mb-3'>
               <div className='custom-file'>
                 <input
                   onChange={(e) => readFile(e)}
-                  onClick={(e) => (e.target.value = '')}
+                  onClick={(e) => (e.target.value = null)}
                   type='file'
                   className='custom-file-input'
                   id='input-file'
+                  required
                 />
                 <label className='custom-file-label'>Choose file</label>
               </div>
-              {/* <div className='input-group-append'>
-									<span className='input-group-text' id=''>
-										Upload
-									</span>
-								</div> */}
             </div>
             <div className='modal-footer'>
               <div className='btn-group' role='group'>
@@ -160,7 +173,10 @@ export default function UploadFile(props) {
                   data-dismiss='modal'>
                   Close
                 </button>
-                <button type='button' className='btn btn-primary'>
+                <button
+                  onClick={importCredentials}
+                  type='button'
+                  className='btn btn-primary'>
                   <i className='fa fa-upload'></i> Upload
                 </button>
               </div>

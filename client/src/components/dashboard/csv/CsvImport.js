@@ -31,7 +31,7 @@ export default function CsvImport({ token }) {
         data-target='#file-upload-modal'
         type='upload'
       />
-      <UploadFile />
+      <UploadFile token={token} />
       {/* <button
         data-toggle='modal'
         data-target='#file-upload-modal'

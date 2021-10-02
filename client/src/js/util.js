@@ -79,9 +79,28 @@ async function addAccount(params) {
   } catch (error) {
     document.body.style.cursor = 'default';
     showAlert(error.message);
-    // setTimeout(() => {
-    //   showAlert(error.message);
-    // }, 1000);
+  }
+}
+
+async function bulkImport(params) {
+  const [importData, showMessage, token] = params;
+
+  try {
+    const data = await ajaxRequest('POST', 'accounts', importData, {
+      Authorization: token,
+    });
+    const respObj = await data.json();
+
+    if (respObj.status_code === 200) {
+      document.body.style.cursor = 'default';
+      showMessage('credentials imported successfully.', '#088f30');
+      return true;
+    }
+    throw new Error(respObj.message);
+  } catch (error) {
+    document.body.style.cursor = 'default';
+    showMessage(`⛔️ ${error.message}`, 'red');
+    return false;
   }
 }
 
@@ -225,6 +244,7 @@ function validateStrings(values) {
 export {
   login,
   addAccount,
+  bulkImport,
   searchAccounts,
   updateAccount,
   deleteAccount,

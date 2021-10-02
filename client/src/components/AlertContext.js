@@ -6,21 +6,25 @@ export const AlertContext = createContext();
 
 export const AlertContextProvider = ({ children }) => {
   const [alert, setAlert] = useState({
-    className: 'hide',
+    displayClass: 'hide',
+    colorClass: 'alert-warning',
     message: null,
     icon: 'fa fa-exclamation-triangle',
   });
 
   const showAlert = (message, type = 'error') => {
-    let icon = alert.icon;
+    let icon, colorClass;
     if (type === 'message') {
       icon = 'fa fa-info-circle';
+      colorClass = 'alert-primary';
     } else {
       icon = 'fa fa-exclamation-triangle';
+      colorClass = 'alert-warning';
     }
 
     setAlert({
-      className: 'show',
+      displayClass: 'show',
+      colorClass,
       message,
       icon,
     });
@@ -31,7 +35,7 @@ export const AlertContextProvider = ({ children }) => {
 
   const hideAlert = () => {
     setAlert({
-      className: 'hide',
+      displayClass: 'hide',
       message: '',
     });
   };
@@ -39,7 +43,7 @@ export const AlertContextProvider = ({ children }) => {
   return (
     <AlertContext.Provider value={[alert, hideAlert, showAlert]}>
       <div
-        className={`alert alert-warning alert-dismissible fade ${alert.className}`}>
+        className={`alert ${alert.colorClass} alert-dismissible fade ${alert.displayClass}`}>
         <strong>
           <i className={alert.icon}></i>
         </strong>

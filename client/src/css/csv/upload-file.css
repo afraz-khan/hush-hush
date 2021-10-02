@@ -7,7 +7,8 @@
   padding-bottom: 0% !important;
 }
 
-.modal-footer {
+#file-upload-modal .modal-footer {
   border-top: none;
   padding: 0%;
+  margin: 0%;
 }

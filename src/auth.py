@@ -28,19 +28,17 @@ class Auth:
     Generates the Auth Token
     :return: string
     """
-		try:
-			payload = {
+		
+		payload = {
 				'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
         'iat': datetime.datetime.utcnow(),
         'sub': os.environ['AUTH_JWT_SUB']
     	}
-			return jwt.encode(
+		return jwt.encode(
         payload,
         os.environ['AUTH_JWT_SECRET'],
         algorithm='HS256'
-    )
-		except Exception as e:
-			return e
+    	)
 	
 	@staticmethod
 	def decode_auth_token(auth_token):
