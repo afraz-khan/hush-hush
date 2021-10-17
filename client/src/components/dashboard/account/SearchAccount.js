@@ -2,7 +2,6 @@ import React, { useRef, useState, useContext } from 'react';
 import '../../../css/dashboard/account/search-account.css';
 import { searchAccounts } from '../../../js/util';
 import { AlertContext } from '../../AlertContext';
-import Spinner from '../../Spinner';
 import EditAccount from './EditAccount';
 
 export default function SearchAccount({ token }) {

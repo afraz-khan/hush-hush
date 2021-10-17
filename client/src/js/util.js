@@ -23,10 +23,6 @@ async function login(params) {
   } catch (error) {
     showAlert(error.message);
     spinnerRef.current.style.display = 'none';
-    // setTimeout(() => {
-    //   showAlert(error.message);
-    //   spinnerRef.current.style.display = 'none';
-    // }, 1000);
   }
 }
 
@@ -168,9 +164,6 @@ async function fetchAllAccounts(params) {
     document.body.style.cursor = 'default';
     showAlert(error.message);
     return false;
-    // setTimeout(() => {
-    //   alert(error.message);
-    // }, 1000);
   }
 }
 
@@ -213,7 +206,6 @@ async function deleteAccount(params) {
       }
     );
     const respObj = await data.json();
-    console.log($('.btn-group')[1].se);
     if (respObj.status_code === 200) {
       document.body.style.cursor = 'default';
       props.editUsernameRef.current.disabled = true;

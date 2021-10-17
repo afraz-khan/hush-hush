@@ -5,7 +5,6 @@ import config from '../../../js/config';
 import { fetchAllAccounts } from '../../../js/util';
 import { AlertContext } from '../../AlertContext';
 import CsvButton from './CsvButton';
-import Spinner from '../../Spinner';
 
 export default function CsvExport({ token }) {
   const [alert, hideAlert, showAlert] = useContext(AlertContext);
@@ -41,13 +40,6 @@ export default function CsvExport({ token }) {
         buttonRef={exportButtonRef}
         type='download'
       />
-      {/* <button
-        onClick={exportData}
-        ref={exportButtonRef}
-        type='button'
-        className='btn btn-dark'>
-        <i className='fa fa-download'></i> Export Credentials
-      </button> */}
     </div>
   );
 }
