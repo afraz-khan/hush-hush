@@ -8,6 +8,7 @@ import EditAccount from './EditAccount';
 export default function SearchAccount({ token }) {
   const [alert, hideAlert, showAlert] = useContext(AlertContext);
   const [data, setData] = useState([]);
+  const [term, setTerm] = useState();
   const [account, setAccount] = useState({});
   const selectRef = useRef(null);
   const inputRef = useRef(null);
@@ -28,6 +29,23 @@ export default function SearchAccount({ token }) {
     nothingFoundRef.current.style.visibility = 'hidden';
     spinnerRef.current.classList.remove('fa-search');
     spinnerRef.current.classList.add('fa-spinner');
+
+    if (inputRef.current.value === term) {
+      if (data.length > 0) {
+        selectRef.current.style.display = 'inline-block';
+      } else {
+        selectRef.current.style.display = 'none';
+        nothingFoundRef.current.style.visibility = 'visible';
+        setTimeout(() => {
+          nothingFoundRef.current.style.visibility = 'hidden';
+        }, 2000);
+      }
+      document.body.style.cursor = 'default';
+      spinnerRef.current.classList.remove('fa-spinner');
+      spinnerRef.current.classList.add('fa-search');
+      return;
+    }
+    setTerm(inputRef.current.value);
     await searchAccounts([
       inputRef.current.value,
       setData,
@@ -68,7 +86,10 @@ export default function SearchAccount({ token }) {
 
   return (
     <div className='search-account p-2'>
-      <form className='row' onSubmit={handleSubmit}>
+      <form
+        className='row'
+        onSubmit={handleSubmit}
+        onMouseLeave={() => (selectRef.current.style.display = 'none')}>
         <div className='col-auto'>
           <label>
             <h6>Search here </h6>
@@ -99,11 +120,7 @@ export default function SearchAccount({ token }) {
             </div>
           </div>
 
-          <select
-            onBlur={() => (selectRef.current.style.display = 'none')}
-            ref={selectRef}
-            className='custom-select'
-            size={selectSize()}>
+          <select ref={selectRef} className='custom-select' size={selectSize()}>
             {data.map((record, i) => {
               return (
                 <option
