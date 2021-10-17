@@ -67,7 +67,10 @@ export default function SearchAccount({ token }) {
 
   return (
     <div className='search-account p-2'>
-      <form className='row' onSubmit={handleSubmit}>
+      <form
+        className='row'
+        onSubmit={handleSubmit}
+        onMouseLeave={() => (selectRef.current.style.display = 'none')}>
         <div className='col-auto'>
           <label>
             <h6>Search here </h6>

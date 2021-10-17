@@ -5,7 +5,7 @@ class Validator:
 	@staticmethod
 	def validate_post_body(data):
 		requiredFields = ['origin', 'username', 'password']
-		print(data)
+
 		if(type(data) == list):
 			for account_obj in data:
 				for field in requiredFields:

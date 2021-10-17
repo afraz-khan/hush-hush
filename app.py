@@ -75,30 +75,6 @@ def add_account():
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
 
-@app.route('/accounts', methods=['POST'])
-def bulk_import_accounts():
-	status_code = 500
-	try:
-		data = json.loads(request.data)
-		requiredFields = ['origin', 'username', 'password']
-		account = Account()
-		if(all((k in data.keys() and data[k] != '' and data[k] != ' ') for k in requiredFields)):
-			result = account.create(data)
-			if(result):
-				status_code = 200
-				return Constant.create_response(status_code, 'success'), status_code
-			status_code = 409
-			raise Exception('Origin already exists')
-		else:
-			status_code = 400
-			raise Exception('invalid body')
-	except Exception as e:
-		print('ERROR: ' , e)
-		message = e.__str__()
-		if status_code == 500:
-			message = 'Seems like, demodogs are not happy 🥲.'
-		return Constant.create_response(status_code, message), status_code
-
 @app.route('/accounts/<origin>', methods=['GET'])
 def get_account(origin):
 	status_code = 500
