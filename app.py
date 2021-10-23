@@ -16,7 +16,7 @@ app = Flask(__name__, static_folder='client/build', static_url_path='/')
 # CORS(app, origins=['https://hush-hush-demo.herokuapp.com', 'https://code.jquery.com', 'https://stackpath.bootstrapcdn.com',
 # 					'https://cdnjs.cloudflare.com'], methods=['POST', 'PUT', 'GET', 'DELETE'],
 # 					allow_headers=['Authorization'])
-CORS(app)
+# CORS(app)
 
 
 # @app.before_request
