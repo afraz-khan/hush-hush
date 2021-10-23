@@ -148,8 +148,6 @@ class Account:
 
 		private_key = RSA.import_key(os.environ['BLOB_PRIVATE_KEY'])
 
-		# enc_session_key, nonce, tag, ciphertext = \
-		# 	[ file_in.read(x) for x in (private_key.size_in_bytes(), 16, 16, -1) ]
 		enc_session_key = data[0]
 		nonce = data[1]
 		tag = data[2]
