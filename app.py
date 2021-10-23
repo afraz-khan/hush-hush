@@ -12,7 +12,7 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-app = Flask(__name__, static_folder='client/build', static_url_path='/')
+app = Flask(__name__, static_folder='client/build', static_url_path='')
 # CORS(app, origins=['https://hush-hush-demo.herokuapp.com', 'https://code.jquery.com', 'https://stackpath.bootstrapcdn.com',
 # 					'https://cdnjs.cloudflare.com'], methods=['POST', 'PUT', 'GET', 'DELETE'],
 # 					allow_headers=['Authorization'])
@@ -39,9 +39,9 @@ def index():
 	return app.send_static_file('index.html')
 
 
-# @app.errorhandler(404)
-# def not_found():
-# 	return app.send_static_file('index.html')
+@app.errorhandler(404)
+def not_found():
+	return app.send_static_file('index.html')
 
 
 @app.route("/auth", methods=['POST'])
