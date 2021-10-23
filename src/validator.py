@@ -1,16 +1,17 @@
 import re
 
+
 class Validator:
 
 	@staticmethod
 	def validate_post_body(data):
-		requiredFields = ['origin', 'username', 'password']
+		required_fields = ['origin', 'username', 'password']
 
-		if(type(data) == list):
+		if type(data) == list:
 			for account_obj in data:
-				for field in requiredFields:
+				for field in required_fields:
 					if field in account_obj.keys():
-						if re.search('^\s*$', account_obj[field]) is not None:	# check for empty strings
+						if re.search(r'^\s*$', account_obj[field]) is not None:  # check for empty strings
 							return False
 					else:
 						return False
@@ -18,8 +19,7 @@ class Validator:
 		return False
 	
 	@staticmethod
-	def validate_update_body(data, allowedFields):
-		if(all((k in allowedFields and re.search("^\s*$", data[k]) is None)
-			for k in data.keys())):
+	def validate_update_body(data, allowed_fields):
+		if all((k in allowed_fields and re.search(r'^\s*$', data[k]) is None) for k in data.keys()):
 			return True
 		return False

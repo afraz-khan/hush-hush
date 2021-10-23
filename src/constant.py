@@ -6,7 +6,7 @@ class Constant:
 			'message': message,
 			'status_code': status_code
 		}
-		for index, arg  in enumerate(args):
+		for index, arg in enumerate(args):
 			if index == 0:
 				resp['data'] = arg
 		return resp
@@ -14,6 +14,6 @@ class Constant:
 	@staticmethod
 	def error_codes():
 		return {
-			'EXPIERD_TOKEN': 100,
+			'EXPIRED_TOKEN': 100,
 			'INVALID_TOKEN': 200
 		}
