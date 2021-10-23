@@ -1,6 +1,5 @@
 from flask import Flask, request, send_from_directory
 import json
-import os
 
 import flask
 from src.auth import Auth
@@ -13,25 +12,24 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 app = Flask(__name__, static_folder='client/build', static_url_path='')
-# CORS(app, origins=['https://hush-hush-demo.herokuapp.com', 'https://code.jquery.com', 'https://stackpath.bootstrapcdn.com',
-# 					'https://cdnjs.cloudflare.com'], methods=['POST', 'PUT', 'GET', 'DELETE'],
-# 					allow_headers=['Authorization'])
-CORS(app)
+CORS(app, origins=['https://hush-hush-demo.herokuapp.com', 'https://code.jquery.com',
+					'https://stackpath.bootstrapcdn.com', 'https://cdnjs.cloudflare.com'],
+					methods=['POST', 'PUT', 'GET', 'DELETE'], allow_headers=['Authorization'])
 
 
-# @app.before_request
-# def request_authorizer():
-# 	f = open('config.json', 'r')
-# 	non_auth_paths = json.load(f)['non_auth_paths']
+@app.before_request
+def request_authorizer():
+	f = open('config.json', 'r')
+	non_auth_paths = json.load(f)['non_auth_paths']
 
-# 	try:
-# 		if request.path not in non_auth_paths and request.path.startswith('/static/') is False:
-# 			Auth.decode_auth_token(request.headers['Authorization'])
-# 	except Exception as e:
-# 		print('ERROR', e)
-# 		if len(e.args) > 1 and e.args[1]['code']:
-# 			return Constant.create_response(403, e.args[0]), 403
-# 		return Constant.create_response(500, 'Seems like, demodogs are not happy 🥲.'), 500
+	try:
+		if request.path not in non_auth_paths and request.path.startswith('/static/') is False:
+			Auth.decode_auth_token(request.headers['Authorization'])
+	except Exception as e:
+		print('ERROR', e)
+		if len(e.args) > 1 and e.args[1]['code']:
+			return Constant.create_response(403, e.args[0]), 403
+		return Constant.create_response(500, 'Seems like, demodogs are not happy 🥲.'), 500
 
 
 @app.route('/')
@@ -165,4 +163,3 @@ def delete_account(origin):
 		if status_code == 500:
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
-		
