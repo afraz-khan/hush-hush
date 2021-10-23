@@ -21,7 +21,7 @@ CORS(app, origins=['https://code.jquery.com', 'https://stackpath.bootstrapcdn.co
 @app.before_request
 def request_authorizer():
 	try:
-		if request.path not in ['', '/', '/auth'] and request.path.startswith('/static/') is False:
+		if request.path not in ['', '/', '/auth', '/favicon.ico', 'logo.svg'] and request.path.startswith('/static/') is False:
 			Auth.decode_auth_token(request.headers['Authorization'])
 	except Exception as e:
 		print('ERROR', e)
