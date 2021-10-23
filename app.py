@@ -12,7 +12,7 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
-app = Flask(__name__, static_folder='client/build', static_url_path='')
+app = Flask(__name__, static_folder='client/build', static_url_path='/')
 CORS(app, origins=['hush-hush-demo.herokuapp.com', 'code.jquery.com', 'stackpath.bootstrapcdn.com',
 					'cdnjs.cloudflare.com'], methods=['POST', 'PUT', 'GET', 'DELETE'],
 					allow_headers=['Authorization'])
@@ -20,8 +20,11 @@ CORS(app, origins=['hush-hush-demo.herokuapp.com', 'code.jquery.com', 'stackpath
 
 @app.before_request
 def request_authorizer():
+	f = open('config.json', 'r')
+	non_auth_paths = json.load(f)['non_auth_paths']
+
 	try:
-		if request.path not in ['', '/', '/auth', '/favicon.ico', '/logo.svg'] and request.path.startswith('/static/') is False:
+		if request.path not in non_auth_paths and request.path.startswith('/static/') is False:
 			Auth.decode_auth_token(request.headers['Authorization'])
 	except Exception as e:
 		print('ERROR', e)
