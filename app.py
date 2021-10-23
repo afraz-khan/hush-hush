@@ -8,28 +8,37 @@ from src.account import Account
 from src.constant import Constant
 from src.validator import Validator
 from flask_cors import CORS
+from dotenv import load_dotenv, find_dotenv
 
-os.environ['CIPHER_SECRET'] = 'TXN2TE15aWZpb0l0NFZSRjM4MEMwRHNxTXY2QmF6UDdqRjhoMC1VZDhrUT0='
-os.environ['CIPHER'] = 'hash.json'
-os.environ['PASS_SALT'] = '43QBXV6rRi2IXE7Vg9EIPhcsWa66zSJnyIEbjQxPoZA='
-os.environ['PASS_KEY'] = '6TTCP6o2HjGuWsdOgrB93oAFfe9eajl+WOrLPGVxIw0='
-os.environ['AUTH_JWT_SECRET'] = 'kIQgnGXnrMAL1UMGPNedMnzVNEVkALRSicEVDpon4CAaaYKVi+iNwreQ/xZGV93Oxss5J7zkhRzzOA9BkhRhSN1F2lS/cS18W4fef/Okli30B2xNFZ4LkPwL+mcDv+s54LcWYcZDEpsYuxn3WNmeDwsL8DlymdihMkETzSFeht/pyqzrWgi+3vLEYFJI1+xTuJjpSn01X55Gde6HHZsh+mA03fNlCzutHj16CeyalYw3Uh+OSAFt8HbkTlNII27S7QwUA89Iz+izz1ehpUL+aWlsWdc9kpK7sWStAwk+yXU0YaireLz6twOJeMYq1ToC+EIcZHpV4HIlhQ2wQcOaZQ=='
-os.environ['USERNAME'] = 'afrazkhan'
-os.environ['AUTH_JWT_SUB'] = 'asdfdsasd'
+load_dotenv(find_dotenv())
 
-app = Flask(__name__)
-CORS(app)
+app = Flask(__name__, static_folder='client/build', static_url_path='/')
+CORS(app, origins=['https://code.jquery.com', 'https://stackpath.bootstrapcdn.com',
+					'https://cdnjs.cloudflare.com'], methods=['POST', 'PUT', 'GET', 'DELETE'],
+					allow_headers=['Authorization'])
+
 
 @app.before_request
 def request_authorizer():
 	try:
-		if(request.path != '/auth'):
+		if request.path not in ['', '/', '/auth'] and request.path.startswith('/static/') is False:
 			Auth.decode_auth_token(request.headers['Authorization'])
 	except Exception as e:
 		print('ERROR', e)
-		if(len(e.args) > 1 and e.args[1]['code']):
+		if len(e.args) > 1 and e.args[1]['code']:
 			return Constant.create_response(403, e.args[0]), 403
 		return Constant.create_response(500, 'Seems like, demodogs are not happy 🥲.'), 500
+
+
+@app.route('/')
+def index():
+	return app.send_static_file('index.html')
+
+
+@app.errorhandler(404)
+def not_found():
+	return app.send_static_file('index.html')
+
 
 @app.route("/auth", methods=['POST'])
 def user_auth():
@@ -37,19 +46,20 @@ def user_auth():
 	try:
 		data = json.loads(request.data)
 		auth = Auth(data['username'], data['master_secret'])
-		authResult = auth.authenticate()
-		if authResult:
+		auth_result = auth.authenticate()
+		if auth_result:
 			resp = flask.Response(json.dumps(Constant.create_response(200, 'success')))
-			resp.headers['Authorization'] = authResult
+			resp.headers['Authorization'] = auth_result
 			return resp, 200
 		status_code = 401
 		raise Exception("I don't know you, acting like a robot? 🤔")
 	except Exception as e:
-		print('ERROR: ' , e)
+		print('ERROR: ', e)
 		message = e.__str__()
 		if status_code == 500:
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
+
 
 @app.route('/accounts', methods=['POST'])
 def add_account():
@@ -69,81 +79,89 @@ def add_account():
 		status_code = 400
 		raise Exception('invalid body')
 	except Exception as e:
-		print('ERROR: ' , e)
+		print('ERROR: ', e)
 		message = e.__str__()
 		if status_code == 500:
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
+
 
 @app.route('/accounts/<origin>', methods=['GET'])
 def get_account(origin):
 	status_code = 500
 	try:
 		account = Account()
-		data = account.findOneByOrigin(origin)
-		if(data):
+		data = account.find_one_by_origin(origin)
+		if data:
 			return Constant.create_response(200, 'success', data), 200
 		status_code = 404
 		raise Exception('origin not found.')
 	except Exception as e:
-		print('ERROR: ' , e)
+		print('ERROR: ', e)
 		message = e.__str__()
 		if status_code == 500:
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
+
 
 @app.route('/accounts', methods=['GET'])
 def search_accounts():
 	status_code = 500
 	try:
 		account = Account()
-		if('origin' in request.args.keys()):
+		if 'origin' in request.args.keys():
 			data = account.search(request.args['origin'].strip())
 		else:
 			data = account.search()
 		return Constant.create_response(200, 'success', data), 200
 	except Exception as e:
-		print('ERROR: ' , e)
+		print('ERROR: ', e)
 		message = e.__str__()
 		if status_code == 500:
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
+
 
 @app.route('/accounts/<origin>', methods=['PUT'])
 def update_account(origin):
 	status_code = 500
 	try:
 		data = json.loads(request.data)
-		allowedFields = ['username', 'password']
+		allowed_fields = ['username', 'password']
 		account = Account()
-		if(Validator.validate_update_body(data, allowedFields)):
-			isUpdated = account.update_account(origin, data)
-			if(isUpdated):
+		if Validator.validate_update_body(data, allowed_fields):
+			is_updated = account.update_account(origin, data)
+			if is_updated:
 				return Constant.create_response(200, 'success'), 200
 			status_code = 404
 			raise Exception('Origin not found.')
 		status_code = 400
-		raise Exception(('invalid_request'))
+		raise Exception('invalid_request')
 	except Exception as e:
-		print('ERROR: ' , e)
+		print('ERROR: ', e)
 		message = e.__str__()
 		if status_code == 500:
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
+
 
 @app.route('/accounts/<origin>', methods=['DELETE'])
 def delete_account(origin):
 	status_code = 500
 	try:
 		account = Account()
-		isDeleted = account.delete_account(origin)
-		if(isDeleted):
+		is_deleted = account.delete_account(origin)
+		if is_deleted:
 			return Constant.create_response(200, 'success'), 200
 		status_code = 404
 		raise Exception('origin not found.')
 	except Exception as e:
-		print('ERROR: ' , e)
+		print('ERROR: ', e)
 		message = e.__str__()
 		if status_code == 500:
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
+
+
+if __name__ == "__main__":
+	app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))

@@ -49,11 +49,9 @@ export default function UploadFile({ token }) {
   }
 
   function handleTrailingLines(lines) {
-    const lastLine = lines[lines.length - 1];
-
     for (let i = lines.length - 1; i > 0; i--) {
       // removing empty trailing lines
-      if (lines[i] === '' || lines[i] === '\n') {
+      if (lines[i] === '' || lines[i] === '\n' || lines[i] === '\r') {
         lines.pop();
         continue;
       }
