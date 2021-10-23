@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 import json
 import os
 
@@ -36,12 +36,12 @@ CORS(app)
 
 @app.route('/')
 def index():
-	return app.send_static_file('index.html')
+	return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.errorhandler(404)
 def not_found():
-	return app.send_static_file('index.html')
+	return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route("/auth", methods=['POST'])
