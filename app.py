@@ -39,9 +39,9 @@ def index():
 	return app.send_static_file('index.html')
 
 
-@app.errorhandler(404)
-def not_found():
-	return app.send_static_file('index.html')
+# @app.errorhandler(404)
+# def not_found():
+# 	return app.send_static_file('index.html')
 
 
 @app.route("/auth", methods=['POST'])

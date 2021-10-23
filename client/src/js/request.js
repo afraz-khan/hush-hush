@@ -1,3 +1,5 @@
+import config from './config';
+
 function createQueryString(queryParams = {}) {
   let queryString = '?';
   let i = -1;
@@ -26,13 +28,15 @@ async function ajaxRequest(
   Object.assign(headers, {
     'Content-Type': 'application/json', // additional headers
   });
-  url += createQueryString(queryParams);
+
+  let finalUrl = url + createQueryString(queryParams);
   const reqObj = { method, headers };
   if (Object.keys(data).length) {
     reqObj['body'] = JSON.stringify(data);
   }
 
-  return fetch(url, reqObj)
+  finalUrl = config.server + finalUrl;
+  return fetch(finalUrl, reqObj)
     .then((response) => response)
     .catch((err) => {
       console.error(err);

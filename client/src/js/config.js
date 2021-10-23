@@ -34,6 +34,7 @@ const styleConfig = {
     },
     fileTypesAllowed: ['text/csv'],
   },
+  server: 'https://hush-hush-demo.herokuapp.com',
 };
 
 export default styleConfig;
