@@ -35,7 +35,7 @@ CORS(app)
 
 
 @app.route('/')
-def index():
+def serve():
 	return send_from_directory(app.static_folder, 'index.html')
 
 
