@@ -52,7 +52,7 @@ async function addAccount(params) {
   try {
     const data = await ajaxRequest(
       'POST',
-      'accounts',
+      '/accounts',
       [
         {
           origin,
@@ -85,7 +85,7 @@ async function bulkImport(params) {
   const [importData, showMessage, token] = params;
 
   try {
-    const data = await ajaxRequest('POST', 'accounts', importData, {
+    const data = await ajaxRequest('POST', '/accounts', importData, {
       Authorization: token,
     });
     const respObj = await data.json();
@@ -109,7 +109,7 @@ async function searchAccounts(params) {
   try {
     const data = await ajaxRequest(
       'GET',
-      'accounts',
+      '/accounts',
       {},
       { Authorization: token },
       {
@@ -147,7 +147,7 @@ async function fetchAllAccounts(params) {
   try {
     const data = await ajaxRequest(
       'GET',
-      'accounts',
+      '/accounts',
       {},
       { Authorization: token }
     );
@@ -172,7 +172,7 @@ async function updateAccount(params) {
   try {
     const data = await ajaxRequest(
       'PUT',
-      `accounts/${props.account['origin']}`,
+      `/accounts/${props.account['origin']}`,
       body,
       {
         Authorization: props.token,
@@ -199,7 +199,7 @@ async function deleteAccount(params) {
   try {
     const data = await ajaxRequest(
       'DELETE',
-      `accounts/${props.account['origin']}`,
+      `/accounts/${props.account['origin']}`,
       {},
       {
         Authorization: props.token,

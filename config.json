@@ -1,3 +1,31 @@
 {
-	"non_auth_paths": ["", "/", "/auth", "/favicon.ico", "/logo.svg", "/logo192.png", "/manifest.json"]
+	"non_auth_paths": [
+		"",
+		"/",
+		"/auth",
+		"/favicon.ico",
+		"/logo.svg",
+		"/logo192.png",
+		"/manifest.json"
+	],
+	"cors": {
+		"origins": [
+			"https://hush-hush-demo.herokuapp.com",
+			"https://code.jquery.com",
+			"https://stackpath.bootstrapcdn.com",
+			"https://cdnjs.cloudflare.com"
+		],
+		"allow_headers": [
+			"Content-Type"
+		],
+		"expose_headers": [
+			"Authorization"
+		],
+		"methods": [
+			"POST",
+			"PUT",
+			"GET",
+			"DELETE"
+		]
+	}
 }

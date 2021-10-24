@@ -1,29 +1,26 @@
 from flask import Flask, request, send_from_directory
 import json
-
 import flask
 from src.auth import Auth
 from src.account import Account
 from src.constant import Constant
 from src.validator import Validator
 from flask_cors import CORS
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv())
+from src.app_config import AppConfig
+app_config = AppConfig()
 
 app = Flask(__name__, static_folder='client/build', static_url_path='')
-CORS(app, origins=['https://hush-hush-demo.herokuapp.com', 'https://code.jquery.com',
-					'https://stackpath.bootstrapcdn.com', 'https://cdnjs.cloudflare.com'],
-					methods=['POST', 'PUT', 'GET', 'DELETE'], allow_headers=['Authorization'])
+
+cors_config = app_config.data['cors']
+CORS(app, origins=cors_config['origins'], allow_headers=cors_config['allow_headers'],
+					expose_headers=cors_config['expose_headers'], methods=cors_config['methods'], )
 
 
 @app.before_request
 def request_authorizer():
-	f = open('config.json', 'r')
-	non_auth_paths = json.load(f)['non_auth_paths']
 
 	try:
-		if request.path not in non_auth_paths and request.path.startswith('/static/') is False:
+		if request.path not in app_config.data['non_auth_paths'] and request.path.startswith('/static/') is False:
 			Auth.decode_auth_token(request.headers['Authorization'])
 	except Exception as e:
 		print('ERROR', e)
