@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/afraz-khan/hush-hush">
-    <img src="https://drive.google.com/file/d/1FOnRIMfa7w-DyPG3n_V-NCu7aZd32Ywa/view?usp=sharing" alt="Logo" width="80" height="80">
+    <img src="https://i.ibb.co/0ts8L6D/logo192.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
