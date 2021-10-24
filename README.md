@@ -29,8 +29,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/afraz-khan/README">
+    <img src="https://drive.google.com/file/d/1FOnRIMfa7w-DyPG3n_V-NCu7aZd32Ywa/view?usp=sharing" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
