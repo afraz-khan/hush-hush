@@ -1,3 +1,5 @@
+https://www.twilio.com/blog/deploy-flask-python-app-aws
+
 Requirements on server.
 -----------------------
 Install git.
