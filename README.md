@@ -32,16 +32,14 @@
     <img src="https://i.ibb.co/0ts8L6D/logo192.png" alt="Logo" width="192" height="192">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Hush-Hush Password Wallet</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A personal password wallet!
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/afraz-khan/hush-hush">View Demo</a>
-    ·
     <a href="https://github.com/afraz-khan/hush-hush/issues">Report Bug</a>
     ·
     <a href="https://github.com/afraz-khan/hush-hush/issues">Request Feature</a>
@@ -249,4 +247,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/afraz-khan
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://i.ibb.co/NsSL4GH/hush-hush-demo.png
