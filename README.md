@@ -243,7 +243,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [watchers-shield]: https://img.shields.io/github/watchers/afraz-khan/hush-hush?color=%23fac55a&style=for-the-badge
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/afraz-khan/hush-hush/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/afraz-khan/Best-README-Template.svg?style=for-the-badge
 [forks-url]: https://github.com/afraz-khan/hush-hush/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
 [stars-url]: https://github.com/afraz-khan/hush-hush/stargazers
