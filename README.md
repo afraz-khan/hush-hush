@@ -245,12 +245,12 @@ Use this space to list resources you find helpful and would like to give credit 
 [contributors-url]: https://github.com/afraz-khan/hush-hush/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/afraz-khan/Best-README-Template.svg?style=for-the-badge
 [forks-url]: https://github.com/afraz-khan/hush-hush/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/afraz-khan/Best-README-Template.svg?style=for-the-badge
 [stars-url]: https://github.com/afraz-khan/hush-hush/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/afraz-khan/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/afraz-khan/hush-hush/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/in/afraz-khan
 [product-screenshot]: images/screenshot.png
