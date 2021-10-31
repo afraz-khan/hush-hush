@@ -67,7 +67,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Hush-Hush is a web based personal password wallet that is used to manage credentials of your digital accounts. Not digital only, it can be used for any secret information which is only accessible to the individual in control of the wallet.
+Hush-Hush is a web based personal password wallet that is used to manage credentials of your digital accounts securely. Not digital only, it can be used to save any secret information which is only accessible to the individual in control of the wallet. Wallet is protected with a username/password pair that you define while configuring the wallet.
 
 
 
@@ -94,7 +94,7 @@ Hush-Hush is a web based personal password wallet that is used to manage credent
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Backend of the project is built with flask and some well-known python cryptography tools like [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/) while frontend is built using reactjs. This project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html). Static folder of the flask app in this case will be the build folder of our react frontend.
+Backend of the project is built with flask and some well-known python cryptography tools like [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/) while frontend is built using reactjs. This project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html). Frontend code resides in the folder named `client`.
 
 ### Prerequisites
 
