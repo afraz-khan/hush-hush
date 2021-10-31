@@ -69,8 +69,6 @@
 
 Hush-Hush is a personal password wallet that is used to manage credentials of your digital accounts. Not digital only, it can be used for any secret information which is only accessible to the individual in control of the wallet.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 ### Built With
@@ -80,16 +78,18 @@ Hush-Hush is a personal password wallet that is used to manage credentials of yo
 * [React.js](https://reactjs.org/)
 * [Bootstrap](https://getbootstrap.com)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 ### Features
+- 100% data encryption
+- Interactive GUI
+- Easily deployable
+- Complete control of the wallet
 - Save new credentials
 - Search for saved origins _(**origin** is the name/source of a particular digital account)_
 - Export all credentials
 - Import credentials (see format here)
-- 100% data encryption
-- Interactive GUI
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
