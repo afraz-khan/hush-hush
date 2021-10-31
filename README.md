@@ -1,28 +1,11 @@
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
 
 
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
+![Repo-Size][repo-size-shield]
+![Watchers][watchers-shield]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![BSD License][license-shield]][license-url]
 
 
 
@@ -33,16 +16,14 @@
     <img src="https://i.ibb.co/0ts8L6D/logo192.png" alt="Logo" width="192" height="192">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Hush-Hush Password Wallet</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A personal password wallet!
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/afraz-khan/hush-hush">View Demo</a>
-    ·
     <a href="https://github.com/afraz-khan/hush-hush/issues">Report Bug</a>
     ·
     <a href="https://github.com/afraz-khan/hush-hush/issues">Request Feature</a>
@@ -50,8 +31,9 @@
 </div>
 
 
-
 <!-- TABLE OF CONTENTS -->
+
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -59,6 +41,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#features">Features</a></li>
       </ul>
     </li>
     <li>
@@ -84,43 +67,34 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+Hush-Hush is a web based personal password wallet that is used to manage credentials of your digital accounts securely. Not digital only, it can be used to save any secret information which is only accessible to the individual in control of the wallet. Wallet is protected with a username/password pair that you define while configuring the wallet.
 
 
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [Next.js](https://nextjs.org/)
+* [Flask](https://flask.palletsprojects.com/)
 * [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
 * [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+
+
+### Features
+- 100% data encryption
+- Interactive GUI
+- Easily deployable
+- Complete control of the wallet
+- Save new credentials
+- Search for saved origins _(**origin** is the name/source of a particular digital account)_
+- Export all credentials
+- Import credentials (see format here)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Backend of the project is built with flask and some well-known python cryptography tools like [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/) while frontend is built using reactjs. This project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html). Frontend code resides in the folder named `client`.
 
 ### Prerequisites
 
@@ -236,16 +210,18 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[repo-size-shield]: https://img.shields.io/github/repo-size/afraz-khan/hush-hush?logo=github&style=for-the-badge
+[watchers-shield]: https://img.shields.io/github/watchers/afraz-khan/hush-hush?color=%23fac55a&style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/afraz-khan/hush-hush?style=for-the-badge
 [contributors-url]: https://github.com/afraz-khan/hush-hush/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/afraz-khan/hush-hush?color=%239afc4e&logo=github&style=for-the-badge
 [forks-url]: https://github.com/afraz-khan/hush-hush/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/afraz-khan/hush-hush?color=%2334959e&logo=github&style=for-the-badge
 [stars-url]: https://github.com/afraz-khan/hush-hush/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/afraz-khan/hush-hush?logo=github&style=for-the-badge
 [issues-url]: https://github.com/afraz-khan/hush-hush/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/afraz-khan/hush-hush?color=%23d1d1d1&style=for-the-badge
+[license-url]: https://github.com/afraz-khan/hush-hush/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[linkedin-url]: https://linkedin.com/in/afraz-khan
+[product-screenshot]: https://i.ibb.co/NsSL4GH/hush-hush-demo.png
