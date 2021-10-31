@@ -41,6 +41,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#features">Features</a></li>
       </ul>
     </li>
     <li>
@@ -82,6 +83,13 @@ Hush-Hush is a personal password wallet that is used to manage credentials of yo
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+### Features
+- Save new credentials
+- Search for saved origins _(**origin** is the name/source of a particular digital account)_
+- Export all credentials
+- Import credentials (see format here)
+- 100% data encryption
+- Interactive GUI
 
 <!-- GETTING STARTED -->
 ## Getting Started
