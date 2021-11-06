@@ -34,7 +34,7 @@ const styleConfig = {
     },
     fileTypesAllowed: ['text/csv'],
   },
-  server: 'http://34.238.124.40:8080',
+  server: '',
 };
 
 export default styleConfig;
