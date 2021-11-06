@@ -6,9 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# react client dir
+client/build/
+
 # Distribution / packaging
 .Python
-# build/
+build/
 develop-eggs/
 dist/
 downloads/

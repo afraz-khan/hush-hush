@@ -16,9 +16,9 @@ class Account:
 		"""loads previous cipher text having all creds
 		"""
 		self.cipher = {}  # main credentials cipher
-		self.fernet = Fernet(base64.b64decode(bytes(os.environ['CIPHER_SECRET'], encoding='utf-8')))
-		if os.stat(os.environ['CIPHER']).st_size > 0:
-			f = open(os.environ['CIPHER'], 'rb')
+		self.fernet = Fernet(base64.b64decode(bytes(os.environ['HUSHHUSH_CIPHER_SECRET'], encoding='utf-8')))
+		if os.stat(os.environ['HUSHHUSH_CIPHER']).st_size > 0:
+			f = open(os.environ['HUSHHUSH_CIPHER'], 'rb')
 			hash_data = f.read()
 			self.cipher = pickle.loads(self.fernet.decrypt(hash_data))  # cipher data is pickel saved
 			f.close()																									 # to bytes
@@ -89,7 +89,7 @@ class Account:
 	def __update_hash(self):
 		encrypted = self.fernet.encrypt(pickle.dumps(self.cipher))
 		
-		f = open(os.environ['CIPHER'], 'wb')
+		f = open(os.environ['HUSHHUSH_CIPHER'], 'wb')
 		f.write(encrypted)
 		f.close()
 
@@ -111,7 +111,7 @@ class Account:
 			self.__string_to_binary(username)[::-1],
 			self.__string_to_binary(password)[::-1]
 		]
-		recipient_key = RSA.import_key(os.environ['BLOB_PUBLIC_KEY'])
+		recipient_key = RSA.import_key(os.environ['HUSHHUSH_PUBLIC_KEY'])
 		session_key = get_random_bytes(16)
 		
 		# Encrypt the session key with the public RSA key
@@ -146,7 +146,7 @@ class Account:
 		2. uses private key for decryption of blob.
 		"""
 
-		private_key = RSA.import_key(os.environ['BLOB_PRIVATE_KEY'])
+		private_key = RSA.import_key(os.environ['HUSHHUSH_PRIVATE_KEY'])
 
 		enc_session_key = data[0]
 		nonce = data[1]

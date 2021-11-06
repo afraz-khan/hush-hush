@@ -9,8 +9,8 @@ class Auth:
 	def __init__(self, username, master_secret) -> None:
 		self.username = username
 		self.master_secret = master_secret
-		self.salt = base64.b64decode(bytes(os.environ['PASS_SALT'], encoding='utf-8'))
-		self.key = base64.b64decode(bytes(os.environ['PASS_KEY'], encoding='utf-8'))
+		self.salt = base64.b64decode(bytes(os.environ['HUSHHUSH_PASS_SALT'], encoding='utf-8'))
+		self.key = base64.b64decode(bytes(os.environ['HUSHHUSH_PASS_KEY'], encoding='utf-8'))
 
 	def authenticate(self):
 		key = hashlib.pbkdf2_hmac(
@@ -19,7 +19,7 @@ class Auth:
 			self.salt,
 			100000
 		)
-		if key == self.key and self.username == os.environ['USERNAME']:
+		if key == self.key and self.username == os.environ['HUSHHUSH_USERNAME']:
 			return self.__encode_auth_token()
 		return False
 
@@ -32,11 +32,11 @@ class Auth:
 		payload = {
 			'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
 			'iat': datetime.datetime.utcnow(),
-			'sub': os.environ['AUTH_JWT_SUB']
+			'sub': os.environ['HUSHHUSH_AUTH_JWT_SUB']
 		}
 		return jwt.encode(
 			payload,
-			os.environ['AUTH_JWT_SECRET'],
+			os.environ['HUSHHUSH_AUTH_JWT_SECRET'],
 			algorithm='HS256'
 		)
 	
@@ -48,8 +48,8 @@ class Auth:
 		:return: integer|string
 		"""
 		try:
-			payload = jwt.decode(auth_token, os.environ['AUTH_JWT_SECRET'], algorithms='HS256')
-			if payload['sub'] == os.environ['AUTH_JWT_SUB']:
+			payload = jwt.decode(auth_token, os.environ['HUSHHUSH_AUTH_JWT_SECRET'], algorithms='HS256')
+			if payload['sub'] == os.environ['HUSHHUSH_AUTH_JWT_SUB']:
 				return payload['sub']
 		except jwt.ExpiredSignatureError:
 			raise Exception('Signature expired. Please log in again.', {'code': 100})

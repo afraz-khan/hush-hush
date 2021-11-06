@@ -18,7 +18,6 @@ CORS(app, origins=cors_config['origins'], allow_headers=cors_config['allow_heade
 
 @app.before_request
 def request_authorizer():
-
 	try:
 		if request.path not in app_config.data['non_auth_paths'] and request.path.startswith('/static/') is False:
 			Auth.decode_auth_token(request.headers['Authorization'])
