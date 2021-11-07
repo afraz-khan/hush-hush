@@ -96,15 +96,15 @@ Hush-Hush is a web based personal password wallet that is used to manage credent
 
 Backend of the project is built with flask and some well-known python cryptography tools like [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/) while frontend is built using reactjs. This project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html). Frontend code resides in the folder named `client`.
 
-> I recommend that choose a server where you want to deploy your password wallet and don't use the server for any other purposes but to be used as your password wallet only. Apply desired network firewalls on the server and you are all set.  
-So far, I have deployed & tested this project on heroku as well as on windows/linux severs (aws, azure). I will explain both of these methods of deployment for this project.
 
 ### Prerequisites
-Make sure 
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Setup a server where you want to deploy your password wallet and don't use the server for any other purposes but to be used as your password wallet only. Apply desired network firewalls on the server and you are all set. So far, I have deployed & tested this project on heroku as well as on windows/linux severs (aws, azure).
+Make sure that below dependencies are installed on the server.
+
+* git
+* python3
+* npm 
+* node (>= 10.x)
 
 ### Installation
 
