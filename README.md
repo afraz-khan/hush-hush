@@ -99,6 +99,7 @@ Backend of the project is built with flask and some well-known python cryptograp
 
 ### Prerequisites
 Setup a server where you want to deploy your password wallet and don't use the server for any other purposes but to be used as your password wallet only. Apply desired network firewalls on the server and you are all set. So far, I have deployed & tested this project on heroku as well as on windows/linux severs (aws, azure).
+
 Make sure that below dependencies are installed on the server.
 
 * git
