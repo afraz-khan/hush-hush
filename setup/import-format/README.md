@@ -1,7 +1,5 @@
 You can import credentials data in csv file fromat.
 
----
-
 ### Format
 - First line of the file is heading. Its value would always be `origin,username,password`.
 - Each other line except first line is treated as a unique credentials record.
