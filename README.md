@@ -87,7 +87,7 @@ Hush-Hush is a web based personal password wallet that is used to manage credent
 - Save new credentials
 - Search for saved origins _(**origin** is the name/source of a particular digital account)_
 - Export all credentials
-- Import credentials (see format here)
+- Import credentials (see format [here](https://github.com/afraz-khan/hush-hush/tree/develop/setup/import-format))
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
