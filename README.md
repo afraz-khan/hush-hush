@@ -107,12 +107,15 @@ Make sure that below dependencies are installed on the server.
 * node (>= 10.x)
 
 ### Installation
-1. Clone the project on the server using below link
+1. Clone the project on the server using below command
    ```
-   https://github.com/afraz-khan/hush-hush.git
+   git clone https://github.com/afraz-khan/hush-hush.git
    ```
-3. Navigate to the cloned project's root.
-4. Create environment keys.
+3. Navigate to the project's root.
+   ```
+   cd hush-hush
+   ```
+5. Create environment keys.
     - Navigate to the `setup/environment-keys` folder.
     - Open python script named `generate_keys.py`, fill in values for `USERNAME/PASSWORD` variables at line no. 10 & 11.  
     
