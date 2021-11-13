@@ -109,8 +109,8 @@ Make sure that below dependencies are installed on the server.
 ### Installation
 1. Clone this project on the server using this [link](https://github.com/afraz-khan/hush-hush.git).
 2. Create environment keys.
-  - Navigate into `setup/environment-keys` folder.
-  - Open `generate_keys.py` file and provide in values for `USERNAME/PASSWORD` for variables at line no. `10` & `11`.
+    - Navigate into `setup/environment-keys` folder.
+    - Open `generate_keys.py` file and provide in values for `USERNAME/PASSWORD` for variables at line no. `10` & `11`.
     > You will use this username/password pair for your wallet login.
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
