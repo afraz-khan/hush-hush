@@ -12,4 +12,4 @@ You can import credentials data in csv file fromat.
 
 ---
 
-See a sample import csv file [here](https://github.com/afraz-khan/hush-hush/blob/develop/setup/import-format/sample-import-data.csv)
+Download the sample import csv file [here](https://github.com/afraz-khan/hush-hush/blob/develop/setup/import-format/sample-import-data.csv)
