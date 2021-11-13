@@ -107,13 +107,19 @@ Make sure that below dependencies are installed on the server.
 * node (>= 10.x)
 
 ### Installation
-1. Clone the project on the server using this [link](https://github.com/afraz-khan/hush-hush.git).
-2. Navigate to the cloned project's root.
-3. Create environment keys.
+1. Clone the project on the server using below link
+   ```
+   https://github.com/afraz-khan/hush-hush.git
+   ```
+3. Navigate to the cloned project's root.
+4. Create environment keys.
     - Navigate to the `setup/environment-keys` folder.
     - Open `generate_keys.py` file and provide in values for `USERNAME/PASSWORD` variables at line no. 10 & 11.  
     
       > You will use this username/password pair for your wallet login.
+
+    - A new file named `.env` will be created with all the needed environment variables for the wallet.
+    - Move that file to the root of the project.
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
