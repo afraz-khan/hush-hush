@@ -111,8 +111,7 @@ Make sure that below dependencies are installed on the server.
 2. Navigate to the cloned project's root.
 3. Create environment keys.
     - Navigate to the `setup/environment-keys` folder.
-    - Open `generate_keys.py` file and provide in values for `USERNAME/PASSWORD` variables at line no. `10` & `11`.
-      
+    - Open `generate_keys.py` file and provide in values for `USERNAME/PASSWORD` variables at line no. 10 & 11.
       > You will use this username/password pair for your wallet login.
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
