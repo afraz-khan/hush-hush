@@ -111,12 +111,31 @@ Make sure that below dependencies are installed on the server.
    ```
    git clone https://github.com/afraz-khan/hush-hush.git
    ```
-3. Navigate to the project's root.
+2. Navigate to the project's root.
    ```
    cd hush-hush
    ```
-5. Create environment keys.
-    - Navigate to the `setup/environment-keys` folder.
+3. Code Dependencies
+    - Install python dependencies using below command.
+        ```
+        pip install -r requirements.txt
+        ```
+    - Navigate to `client` folder and install node dependencies using below command.
+        ```
+        npm install
+        ```
+4. Setup Server Urls
+    - Find out your final server url i.e. https://www.example.com, 123.23.57.12.
+    - Open file at the path `client/src/js/config.js`. This file is used for UI configurations. Go to the key named `server` at line no. 37, put final server url in the value and save the file.
+    - Allow the server origin by setting that up in the backend cors. For that, open file named `config.json` at the root, add final server url as additional value into `"cors" > "origins" array` and save the file.
+5. Create Frontend(react) Build
+   - Navigate to the `client` folder and run below command to create frontend build.
+     ```
+     npm run build
+     ```
+     > React `build` folder is used as static assets folder of the flask app.
+7. Create Environment Keys
+    - Come back to the root and navigate to the `setup/environment-keys` folder.
     - Open python script named `generate_keys.py`, fill in values for `USERNAME/PASSWORD` variables at line no. 10 & 11.  
     
       > You will use this username/password pair for your wallet login.
@@ -124,6 +143,7 @@ Make sure that below dependencies are installed on the server.
     - Save the script and execute that using python shell.
     - A new file named `.env` will be created with all the environment variables needed for the wallet.
     - Move `.env` file to the root of the project.
+4. Create client build.
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
