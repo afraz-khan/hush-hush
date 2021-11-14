@@ -23,3 +23,11 @@ class Validator:
 		if all((k in allowed_fields and re.search(r'^\s*$', data[k]) is None) for k in data.keys()):
 			return True
 		return False
+
+	@staticmethod
+	def password_check(password):
+		reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+		pat = re.compile(reg)
+		if re.search(pat, password):
+			return True
+		return False

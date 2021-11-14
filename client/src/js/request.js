@@ -1,4 +1,4 @@
-import config from './config';
+import params from '../params.json';
 
 function createQueryString(queryParams = {}) {
   let queryString = '?';
@@ -35,7 +35,7 @@ async function ajaxRequest(
     reqObj['body'] = JSON.stringify(data);
   }
 
-  finalUrl = config.server + finalUrl;
+  finalUrl = params['server-url'] + finalUrl;
   return fetch(finalUrl, reqObj)
     .then((response) => response)
     .catch((err) => {

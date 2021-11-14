@@ -34,7 +34,6 @@ const styleConfig = {
     },
     fileTypesAllowed: ['text/csv'],
   },
-  server: '',
 };
 
 export default styleConfig;
