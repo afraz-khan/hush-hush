@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 1. SET ENVIRONMENT VARIABLES --------------------------------------------------------
+echo -e '\n\n     ****** HUSH-HUSH Password Wallet Installation *****\n\n'
 
 password_rules=(
 	'- length should be at least 6' '- length should be not be greater than 8' 
@@ -9,8 +9,19 @@ password_rules=(
 	)
 script_loc='./setup.sh'
 
-echo -e '\n\n     ****** HUSH-HUSH Password Wallet Installation *****\n\n'
-echo -e '1. Set wallet login credenitals.\n===================================\n'
+# 1. INSTALL DEPENDENCIES ---------------------------------------------------------------
+
+echo -e '\n\n3. Installing code dependencies.\n===================================\n'
+
+echo -e '\n- Python dependencies\n'
+echo $(pip install -r requirements.txt)
+
+echo -e '\n- Node dependencies\n'
+echo $(cd client && npm i)
+
+# 2. SET ENVIRONMENT VARIABLES --------------------------------------------------------
+
+echo -e '\n\n1. Set wallet login credenitals.\n===================================\n'
 
 output_success=false
 
@@ -62,17 +73,9 @@ read -p 'Enter server url: ' server_url
 echo -e '\n\nexecuting.....'
 echo $(python3 setup/set_server_url.py $server_url)
 
-# 2. INSTALL DEPENDENCIES ---------------------------------------------------------------
+# 3. CREATE REACT BUILD ---------------------------------------------------------------
 
-echo -e '\n\n3. Installing code dependencies.\n'
-
-echo -e '\n- Python dependencies\n'
-echo $(pip install -r requirements.txt)
-
-echo -e '\n- Node dependencies\n'
-echo $(cd client && npm i)
-
-echo -e '\n- Create React Build\n'
+echo -e '\n- Create React Build\n===================================\n'
 echo $(cd client && npm run build)
 
 echo -e '\n\n     ***** Environment is set up successfully *****'
