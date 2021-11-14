@@ -14,7 +14,7 @@ script_loc='./setup.sh'
 echo -e '\n\n3. Installing code dependencies.\n===================================\n'
 
 echo -e '\n- Python dependencies\n'
-echo $(pip install -r requirements.txt)
+echo $(python3 -m pip install -r requirements.txt)
 
 echo -e '\n- Node dependencies\n'
 echo $(cd client && npm i)
