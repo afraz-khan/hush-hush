@@ -27,7 +27,7 @@ set_password(){
 	read -sp 'Confirm password: ' password_confirm
 
 	if [ $password = $password_confirm ]; then
-		env_keys_output=`python setup/generate_env_keys.py $username $password`
+		env_keys_output=`python3 setup/generate_env_keys.py $username $password`
 	
 		case $env_keys_output in 
 			0)
@@ -60,7 +60,7 @@ echo -e '\n----- IMPORTANT\n\n- Remove trailing forward slash(/) from the url.\n
 read -p 'Enter server url: ' server_url
 
 echo -e '\n\nexecuting.....'
-echo $(python setup/set_server_url.py $server_url)
+echo $(python3 setup/set_server_url.py $server_url)
 
 # 2. INSTALL DEPENDENCIES ---------------------------------------------------------------
 
