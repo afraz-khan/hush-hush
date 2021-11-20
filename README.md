@@ -80,7 +80,7 @@ Hush-Hush is a web based personal password wallet that is used to manage credent
 
 
 ### Features
-- 100% data encryption
+- 100% data encryption at rest
 - Interactive GUI
 - Easily deployable
 - Complete control of the wallet
@@ -175,15 +175,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [] Add Additional Templates w/ Examples
-- [] Add "components" document to easily copy & paste sections of the readme
-- [] Multi-language Support
-    - [] Chinese
-    - [] Spanish
+- [x] Make wallet scalable
+- [x] Add more deployement options
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/afraz-khan/hush-hush/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -210,7 +205,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the BSD License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -219,9 +214,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Your Name - [@afrazkhan_](https://afraz-khan.github.io) - afrazkhan@pm.me
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/afraz-khan/hush-hush](https://github.com/afraz-khan/hush-hush)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
