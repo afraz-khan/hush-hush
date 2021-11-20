@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddAccount from './account/AddAccount';
 import SearchAccount from './account/SearchAccount';
 import logo from '../../images/logo.svg';
+import $ from 'jquery';
 import CsvExport from './csv/CsvExport';
 import CsvImport from './csv/CsvImport';
 import Footer from '../Footer';

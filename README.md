@@ -103,8 +103,9 @@ Make sure that below dependencies are installed on the server.
 
 * git
 * python3
-* npm 
+* pip3
 * node (>= 10.x)
+* npm
 
 ### Installation
 1. Clone the project on the server using below command
