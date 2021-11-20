@@ -159,3 +159,6 @@ def delete_account(origin):
 		if status_code == 500:
 			message = 'Seems like, demodogs are not happy 🥲.'
 		return Constant.create_response(status_code, message), status_code
+
+if __name__ == '__main__':
+    app.run(debug=True,host='0.0.0.0')
