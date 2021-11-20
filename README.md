@@ -84,28 +84,33 @@ Hush-Hush is a web based personal password wallet that is used to manage credent
 - Interactive GUI
 - Easily deployable
 - Complete control of the wallet
-- Save new credentials
-- Search for saved origins _(**origin** is the name/source of a particular digital account)_
-- Export all credentials
+- Export credentials
 - Import credentials (see format [here](https://github.com/afraz-khan/hush-hush/tree/develop/setup/import-format))
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Deployment
 
-Backend of the project is built with flask and some well-known python cryptography tools like [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/) while frontend is built using reactjs. This project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html). Frontend code resides in the folder named `client`.
+Backend of the project is built with flask and python cryptography tools like [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/). Frontend is built using reactjs. This project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html). Frontend react code resides in the folder named `client` and build of that is used as the static assests folder to flask app.
 
 
 ### Prerequisites
-Setup a server where you want to deploy your password wallet and don't use the server for any other purposes but to be used as your password wallet only. Apply desired network firewalls on the server and you are all set. So far, I have deployed & tested this project on heroku as well as on windows/linux severs (aws, azure).  
+Spin-up a linux server(ubuntu recommended) where you want to deploy your password wallet and don't use that server for any other purposes but to be used as your password wallet only.
 Make sure that below dependencies are installed on the server.
 
 * git
 * python3
-* pip3
-* node (>= 10.x)
+* python3-pip
+* python3-venv (optional, in case if you want to create separate virtual env)
+* node>= 10.x
 * npm
+* tmux
+
+```
+sudo apt update
+sudo apt install git python3 python3-pip python3-venv nodejs npm tmux
+```
 
 ### Installation
 1. Clone the project on the server using below command
@@ -116,46 +121,41 @@ Make sure that below dependencies are installed on the server.
    ```
    cd hush-hush
    ```
-3. Code Dependencies
-    - Install python dependencies using below command.
-        ```
-        pip install -r requirements.txt
-        ```
-    - Navigate to `client` folder and install node dependencies using below command.
-        ```
-        npm install
-        ```
-4. Setup Server Urls
-    - Find out your final server url i.e. https://www.example.com, 123.23.57.12.
-    - Open file at the path `client/src/js/config.js`. This file is used for UI configurations. Go to the key named `server` at line no. 37, put final server url in the value and save the file.
-    - Allow the server origin by setting that up in the backend cors. For that, open file named `config.json` at the root, add final server url as additional value into `"cors" > "origins" array` and save the file.
-5. Create Frontend(react) Build
-   - Navigate to the `client` folder and run below command to create frontend build.
-     ```
-     npm run build
-     ```
-     > React `build` folder is used as static assets folder of the flask app.
-7. Create Environment Keys
-    - Come back to the root and navigate to the `setup/environment-keys` folder.
-    - Open python script named `generate_keys.py`, fill in values for `USERNAME/PASSWORD` variables at line no. 10 & 11.  
-    
-      > You will use this username/password pair for your wallet login.
+3. Activate your virtual environment, if you created any. (optional)
+4. Figure out your final server url i.e. https://www.example.com, public-ip(123.23.57.12) and run below command to setup the environment.
+   ```
+   bash setup.sh
+   ```
+   This bash script takes `username/password` combination, server-url/public-ip and does below tasks in order
+   * installs required python & node dependencies
+   * creates required environment keys for your wallet
+   * sets required application config params
+   * creates react build
+  
+   > If script is stuck due to some error, try to run it again or feel free to contact. I am more than happy to help :).
 
-    - Save the script and execute that using python shell.
-    - A new file named `.env` will be created with all the environment variables needed for the wallet.
-    - Move `.env` file to the root of the project.
-4. Create client build.
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+4. Use `tmux` to create a new terminal session for your wallet application. That session would run in background so that you can work simultaneously in other terminal sessions.
+   * Create new session
+     ```
+     tmux new -s mywalletapp
+     ```
+   * server your application using below command
+     ```
+     gunicorn --bind x.x.x.x:8080 wsgi:app
+     ```
+     > `x.x.x.x` should be private ip of your server
+   * Press `Ctrl + B` and `D` on your keyboard to leave the terminal session running in background.
+   * If you need to make changes to your application for some reason or stop the session, enter the command below to reattach to the “mywalletapp” session.
+     ```
+     tmux attach -t mywalletapp
+     ```
+     Once again, when you are ready to leave the tmux session to do it’s work, press `Ctrl B` and press `D` on your keyboard. 
+   * If for some reason, you want to kill the session, press `Ctrl D` while inside the tmux session.
+   * Run below command to list all tmux sessions
+     ```
+     tmux ls
+     ```
+5. You wallet is deployed, now press `Ctrl C` to logout the server and head over to `https://server-public-ip:8080` to see the app.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
