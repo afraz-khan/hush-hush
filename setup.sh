@@ -67,7 +67,7 @@ do
 done
 
 echo -e '\n\n\n2. Set your final server url i.e. (https://www.exmaple.com, example.com, 12.44.555.33).\n===================================\n'
-echo -e '\n----- IMPORTANT\n\n- Remove trailing forward slash(/) from the url.\n\n'
+echo -e '\n----- IMPORTANT\n- Remove trailing forward slash(/) from the url.\n\n'
 read -p 'Enter server url: ' server_url
 
 echo $(python3 setup/set_server_url.py $server_url)
