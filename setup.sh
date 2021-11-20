@@ -70,12 +70,12 @@ echo -e '\n\n\n2. Set your final server url i.e. (https://www.exmaple.com, examp
 echo -e '\n----- IMPORTANT\n\n- Remove trailing forward slash(/) from the url.\n\n'
 read -p 'Enter server url: ' server_url
 
-echo -e '\n\nexecuting.....'
 echo $(python3 setup/set_server_url.py $server_url)
-
+echo -e '\n\n     ***** Environment is set up successfully *****'
 # 3. CREATE REACT BUILD ---------------------------------------------------------------
 
 echo -e '\n- Create React Build\n===================================\n'
+echo -e 'executing.....'
 echo $(cd client && npm run build)
 
-echo -e '\n\n     ***** Environment is set up successfully *****'
+echo -e '\n\n Done :)'

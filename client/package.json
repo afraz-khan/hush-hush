@@ -1,7 +1,13 @@
 {
-  "name": "client",
+  "name": "hush-hush-client",
   "version": "0.1.0",
+  "author": {
+    "name": "Afraz Khan",
+    "email": "afrazkhan@pm.me",
+    "url": "https://afraz-khan.github.io"
+  },
   "private": true,
+  "description": "React client app for hush-hush password wallet.",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -39,5 +45,8 @@
   },
   "devDependencies": {
     "prettier": "^2.3.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
