@@ -12,12 +12,3 @@ f = open('config.json', 'w')
 data['cors']['origins'].append(server_url)
 json.dump(data, f)
 f.close()
-
-f = open('client/src/params.json', 'r')
-data = json.load(f)
-f.close()
-
-f = open('client/src/params.json', 'w')
-data['server-url'] = server_url
-json.dump(data, f)
-f.close()
