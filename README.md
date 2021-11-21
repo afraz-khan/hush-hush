@@ -96,9 +96,10 @@ Find the deployment options below that are used to test this project so far.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-For each credentials object, you have to enter 3 items (`origin`, `username`, `password`)
-- `origin` should be the source like "dojo-bank", "facebook", "google account".
-- `username` should be actual username/email or any unique value that you setup for that particular account for identification.
+- For each credentials object, you have to enter 3 items (`origin`, `username`, `password`).
+  - `origin` should be the source like "dojo-bank", "facebook", "google account".
+  - `username` should be actual username/email or any unique value that you setup for that particular account for identification.
+- You can import credentials in bulk. use this [guide](https://github.com/afraz-khan/hush-hush/blob/main/setup/import-format/README.md)
 
 #### Demo
 Demo Link: https://hush-hush-demo.herokuapp.com/
