@@ -10,9 +10,10 @@
 
 </div>
 
+# Deploy on Linux Server
 
 ### Prerequisites
-Spin-up a linux server(ubuntu recommended) where you want to deploy your password wallet and don't use that server for any other purposes but to be used as your password wallet only.
+Spin-up a linux server(ubuntu recommended) where you want to deploy your password wallet and do not use that server for any other purposes but to be used as your password wallet only.
 Make sure that below dependencies are installed on the server.
 
 * git
@@ -74,101 +75,3 @@ sudo apt install git python3 python3-pip python3-venv nodejs npm tmux
 5. Your wallet is deployed, now press `Ctrl C` to logout the server and head over to `https://server-public-ip:8080` to see the app.
    > If you set a domain for the server url during the installation than setup that domain for the server and try to access the wallet at `https://your-domain`.
    You can serve the flask app behind an nginx server. Look for step 6 of [this](https://faun.pub/deploy-flask-app-with-nginx-using-gunicorn-7fda4f50066a) document to configure nginx but application works without that.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Make wallet scalable
-- [ ] Add more deployement options
-
-See the [open issues](https://github.com/afraz-khan/hush-hush/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the BSD License. See `LICENSE` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Twitter - [@afrazkhan_](https://twitter.com/afrazkhan_)  
-Email: afrazkhan@pm.me  
-Project Link: [https://github.com/afraz-khan/hush-hush](https://github.com/afraz-khan/hush-hush)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [PyCryptodome](https://pycryptodome.readthedocs.io/)
-* [PyCryptography](https://cryptography.io/en/latest/)
-* [React CSV](https://www.npmjs.com/package/react-csv)
-* [Font Awesome](https://fontawesome.com/)
-* [Flaticon](https://www.flaticon.com/)
-* [Bootstrap](https://getbootstrap.com/)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[repo-size-shield]: https://img.shields.io/github/repo-size/afraz-khan/hush-hush?logo=github&style=for-the-badge
-[watchers-shield]: https://img.shields.io/github/watchers/afraz-khan/hush-hush?color=%23fac55a&style=for-the-badge
-[contributors-shield]: https://img.shields.io/github/contributors/afraz-khan/hush-hush?style=for-the-badge
-[contributors-url]: https://github.com/afraz-khan/hush-hush/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/afraz-khan/hush-hush?color=%239afc4e&logo=github&style=for-the-badge
-[forks-url]: https://github.com/afraz-khan/hush-hush/network/members
-[stars-shield]: https://img.shields.io/github/stars/afraz-khan/hush-hush?color=%2334959e&logo=github&style=for-the-badge
-[stars-url]: https://github.com/afraz-khan/hush-hush/stargazers
-[issues-shield]: https://img.shields.io/github/issues/afraz-khan/hush-hush?logo=github&style=for-the-badge
-[issues-url]: https://github.com/afraz-khan/hush-hush/issues
-[license-shield]: https://img.shields.io/github/license/afraz-khan/hush-hush?color=%23d1d1d1&style=for-the-badge
-[license-url]: https://github.com/afraz-khan/hush-hush/blob/main/LICENSE
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/afraz-khan
-[product-screenshot]: https://i.ibb.co/NsSL4GH/hush-hush-demo.png
