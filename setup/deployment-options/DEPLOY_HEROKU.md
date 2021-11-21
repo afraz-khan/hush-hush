@@ -62,6 +62,7 @@
    git add client/build -f
    git commit -am 'my password wallet'
    git push heroku main
+   
    ```
 
 5. Your wallet is deployed, head over to `https://mypasswordwalletapp.herokuapp.com`.
