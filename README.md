@@ -42,7 +42,7 @@
       </ul>
     </li>
     <li>
-      <a href="#Deployment">Deployment</a>
+      <a href="#Deployment 🔼">Deployment</a>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
