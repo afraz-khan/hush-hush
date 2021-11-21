@@ -1,4 +1,4 @@
-# React CLient for Hush-Hush Password Wallet
+# React Client for Hush-Hush Password Wallet
 
 1. Install dependencies
 ```
