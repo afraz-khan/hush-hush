@@ -72,6 +72,7 @@ Find the deployment options below that are used to test this project so far.
   - `origin` should be the source like "dojo-bank", "facebook", "google account".
   - `username` should be actual username/email or any unique value that you setup for that particular account for identification.
 - You can import credentials in bulk. use this [guide](https://github.com/afraz-khan/hush-hush/blob/main/setup/import-format/README.md).
+- Each time you login to your wallet, user session is valid for 20 mins only. You will have to re-login after each session expires.
 
 #### Demo 🌠
 Demo Link: https://hush-hush-demo.herokuapp.com/  
