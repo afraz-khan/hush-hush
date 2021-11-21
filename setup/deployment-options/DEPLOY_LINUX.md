@@ -73,7 +73,8 @@ sudo apt install git python3 python3-pip python3-venv nodejs npm tmux
      ```
      tmux ls
      ```
-5. Your wallet is deployed, now press `Ctrl C` to logout the server and head over to `https://server-public-ip:8080` to see the app.
+5. Apply relevant firewall rules to your server to make you wallet accessible to only you.
+6. Your wallet is deployed and ready, now press `Ctrl C` to logout the server and head over to `https://server-public-ip:8080` to see the app.
    > If you set a domain for the server url during the installation than setup that domain for the server and try to access the wallet at `https://your-domain`.
    You can serve the flask app behind an nginx server. Look for step 6 of [this](https://faun.pub/deploy-flask-app-with-nginx-using-gunicorn-7fda4f50066a) document to configure nginx but application works without that.
 </br>
