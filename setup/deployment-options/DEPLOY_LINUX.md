@@ -1,96 +1,14 @@
 <div id="top"></div>
 
-
-<!-- PROJECT SHIELDS -->
-![Repo-Size][repo-size-shield]
-![Watchers][watchers-shield]
-[![Issues][issues-shield]][issues-url]
-[![BSD License][license-shield]][license-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/afraz-khan/hush-hush">
-    <img src="https://i.ibb.co/0ts8L6D/logo192.png" alt="Logo" width="192" height="192">
+    <img src="https://i.ibb.co/0ts8L6D/logo192.png" alt="Logo" width="64" height="64">
   </a>
-
   <h3 align="center">Hush-Hush Password Wallet</h3>
 
-  <p align="center">
-    A personal password wallet!
-    <br />
-    <a href="https://github.com/afraz-khan/hush-hush/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/afraz-khan/hush-hush/issues">Request Feature</a>
-  </p>
 </div>
-
-
-<!-- TABLE OF CONTENTS -->
-
-
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-        <li><a href="#features">Features</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#Deployment">Deployment</a>
-      <ul>
-        <li><a href="#linux-server">Deploy on a Linux Server</a></li>
-        <li><a href="#heroku"></a>Deploy on Heroku</li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Hush-Hush is a web based personal password wallet solution that is used to manage credentials of your digital accounts securely. Not digital only, it can be used to save any secret information which is only accessible to the individual in control of the wallet. Wallet is protected with a username/password pair that you define while configuring the wallet.
-
-
-
-### Built With
-
-
-* [Flask](https://flask.palletsprojects.com/)
-* [React.js](https://reactjs.org/)
-* [Bootstrap](https://getbootstrap.com)
-
-
-### Features
-- 100% data encryption at rest
-- Interactive GUI
-- Easy deployment
-- Complete control of the wallet
-- Export credentials
-- Import credentials (see format [here](https://github.com/afraz-khan/hush-hush/tree/develop/setup/import-format))
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- GETTING STARTED -->
-## Deployment
-
-Backend of the project is built with flask and python cryptography tools [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/). Frontend is built using reactjs and react project named `client`. Build of react project is used as the static assests folder to flask app. Project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html).
-Find the deployment options below that are used to test this project so far.
 
 
 ### Prerequisites
