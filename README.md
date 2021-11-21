@@ -113,7 +113,7 @@ sudo apt install git python3 python3-pip python3-venv nodejs npm tmux
 ```
 
 ### Installation
-1. Clone the project on the server using below command
+1. Log into the server and clone the project using below command
    ```
    git clone https://github.com/afraz-khan/hush-hush.git
    ```
@@ -134,12 +134,12 @@ sudo apt install git python3 python3-pip python3-venv nodejs npm tmux
   
    > If script is stuck due to some error, try to run it again or feel free to contact. I am more than happy to help :).
 
-4. Use `tmux` to create a new terminal session for your wallet application. That session would run in background so that you can work simultaneously in other terminal sessions.
+4. Use `tmux` to create a new terminal session for your wallet application. That session would run in background so that you can work simultaneously in other terminal sessions on the server.
    * Create new session
      ```
      tmux new -s mywalletapp
      ```
-   * server your application using below command
+   * serve your application using below command
      ```
      gunicorn --bind x.x.x.x:8080 wsgi:app
      ```
@@ -155,7 +155,9 @@ sudo apt install git python3 python3-pip python3-venv nodejs npm tmux
      ```
      tmux ls
      ```
-5. You wallet is deployed, now press `Ctrl C` to logout the server and head over to `https://server-public-ip:8080` to see the app.
+5. Your wallet is deployed, now press `Ctrl C` to logout the server and head over to `https://server-public-ip:8080` to see the app.
+   > If you set a domain for the server url during the installation than setup that domain for the server and try to access the wallet at `https://your-domain`.
+   You can serve the flask app behind an nginx server. Look for step 6 of [this](https://faun.pub/deploy-flask-app-with-nginx-using-gunicorn-7fda4f50066a) document to configure nginx but application works without that.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -175,8 +177,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Make wallet scalable
-- [x] Add more deployement options
+- [] Make wallet scalable
+- [] Add more deployement options
 
 See the [open issues](https://github.com/afraz-khan/hush-hush/issues) for a full list of proposed features (and known issues).
 
@@ -214,8 +216,8 @@ Distributed under the BSD License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@afrazkhan_](https://twitter.com/afrazkhan_) - afrazkhan@pm.me
-
+Your Name - [@afrazkhan_](https://twitter.com/afrazkhan_)
+Email: afrazkhan@pm.me
 Project Link: [https://github.com/afraz-khan/hush-hush](https://github.com/afraz-khan/hush-hush)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -225,16 +227,14 @@ Project Link: [https://github.com/afraz-khan/hush-hush](https://github.com/afraz
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+I've included a few of my favorites to kick things off!
 
 * [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [PyCryptodome](https://pycryptodome.readthedocs.io/)
+* [React CSV](https://www.npmjs.com/package/react-csv)
+* [Font Awesome](https://fontawesome.com/)
+* [Flaticon](https://www.flaticon.com/)
+* [Bootstrap](https://getbootstrap.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
