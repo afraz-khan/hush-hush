@@ -72,7 +72,7 @@ Hush-Hush is a web based personal password wallet solution that is used to manag
 * [Bootstrap](https://getbootstrap.com)
 
 
-### Features
+### Features :sparkles:
 - 100% data encryption at rest
 - Interactive GUI
 - Easy deployment
