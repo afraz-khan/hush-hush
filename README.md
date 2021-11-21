@@ -96,9 +96,14 @@ Find the deployment options below that are used to test this project so far.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+For each credentials object, you have to enter 3 items (`origin`, `username`, `password`)
+- `origin` should be the source like "dojo-bank", "facebook", "google account".
+- `username` should be actual username/email or any unique value that you setup for that particular account for identification.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+#### Demo
+Demo Link: https://hush-hush-demo.herokuapp.com/
+Username: `demouser`
+Password: `Demopassword123$`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
