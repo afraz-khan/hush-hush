@@ -21,7 +21,6 @@
   <p align="center">
     A personal password wallet!
     <br />
-    <br />
     <a href="https://github.com/afraz-khan/hush-hush/issues">Report Bug</a>
     ·
     <a href="https://github.com/afraz-khan/hush-hush/issues">Request Feature</a>
