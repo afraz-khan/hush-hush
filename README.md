@@ -174,8 +174,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [] Make wallet scalable
-- [] Add more deployement options
+- [ ] Make wallet scalable
+- [ ] Add more deployement options
 
 See the [open issues](https://github.com/afraz-khan/hush-hush/issues) for a full list of proposed features (and known issues).
 
@@ -223,8 +223,6 @@ Project Link: [https://github.com/afraz-khan/hush-hush](https://github.com/afraz
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
-I've included a few of my favorites to kick things off!
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [PyCryptodome](https://pycryptodome.readthedocs.io/)
