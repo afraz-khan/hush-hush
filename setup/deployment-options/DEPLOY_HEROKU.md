@@ -52,8 +52,9 @@
    * creates required environment keys for your wallet
    * sets required application config params
    * creates react build
-  
-   > If script is stuck due to some error or you want to change something then run the script again. If you are unable to resolve the issue then feel free to contact. I am more than happy to help :).
+   </br>
+    
+    > If script is stuck due to some error or you want to change something then run the script again. If you are unable to resolve the issue then feel free to contact. I am more than happy to help :).
 
 6. Run below commands to push the changes.
    ```
