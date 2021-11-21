@@ -56,7 +56,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About The Project 💡
 
 [![Product Name Screen Shot][product-screenshot]](https://hush-hush-demo.herokuapp.com/)
 
@@ -64,7 +64,7 @@ Hush-Hush is a web based personal password wallet solution that is used to manag
 
 
 
-### Built With
+### Built With 🔧
 
 
 * [Flask](https://flask.palletsprojects.com/)
@@ -72,7 +72,7 @@ Hush-Hush is a web based personal password wallet solution that is used to manag
 * [Bootstrap](https://getbootstrap.com)
 
 
-### Features :sparkles:
+### Features ✨
 - 100% data encryption at rest
 - Interactive GUI
 - Easy deployment
@@ -83,7 +83,7 @@ Hush-Hush is a web based personal password wallet solution that is used to manag
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- DEPLOYMENT -->
-## Deployment
+## Deployment 🔼
 
 Backend of the project is built with flask and python cryptography tools [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/). Frontend is built using reactjs and react project named `client`. Build of react project is used as the static assests folder to flask app. Project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html).  
 Find the deployment options below that are used to test this project so far.
@@ -94,14 +94,14 @@ Find the deployment options below that are used to test this project so far.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usage 🍱
 
 - For each credentials object, you have to enter 3 items (`origin`, `username`, `password`).
   - `origin` should be the source like "dojo-bank", "facebook", "google account".
   - `username` should be actual username/email or any unique value that you setup for that particular account for identification.
 - You can import credentials in bulk. use this [guide](https://github.com/afraz-khan/hush-hush/blob/main/setup/import-format/README.md).
 
-#### Demo
+#### Demo 🌠
 Demo Link: https://hush-hush-demo.herokuapp.com/  
 Username: `demouser`  
 Password: `Demopassword123$`
@@ -111,7 +111,7 @@ Password: `Demopassword123$`
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Roadmap ⏭️
 
 - [ ] Make wallet scalable
 - [ ] Add more deployement options
@@ -123,7 +123,7 @@ See the [open issues](https://github.com/afraz-khan/hush-hush/issues) for a full
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Contributing ㊗️
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -141,7 +141,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
-## License
+## License 🔑
 
 Distributed under the BSD License. See `LICENSE` for more information.
 
@@ -150,7 +150,7 @@ Distributed under the BSD License. See `LICENSE` for more information.
 
 
 <!-- CONTACT -->
-## Contact
+## Contact 👋
 
 Twitter - [@afrazkhan_](https://twitter.com/afrazkhan_)  
 Email: afrazkhan@pm.me  
@@ -161,7 +161,7 @@ Project Link: [https://github.com/afraz-khan/hush-hush](https://github.com/afraz
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Acknowledgments 🙌
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [PyCryptodome](https://pycryptodome.readthedocs.io/)
