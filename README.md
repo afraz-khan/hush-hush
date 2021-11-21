@@ -42,7 +42,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#Deployment">Deployment</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
@@ -64,7 +64,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Hush-Hush is a web based personal password wallet that is used to manage credentials of your digital accounts securely. Not digital only, it can be used to save any secret information which is only accessible to the individual in control of the wallet. Wallet is protected with a username/password pair that you define while configuring the wallet.
+Hush-Hush is a web based personal password wallet solution that is used to manage credentials of your digital accounts securely. Not digital only, it can be used to save any secret information which is only accessible to the individual in control of the wallet. Wallet is protected with a username/password pair that you define while configuring the wallet.
 
 
 
