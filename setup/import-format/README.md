@@ -1,3 +1,15 @@
+<div id="top"></div>
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/afraz-khan/hush-hush">
+    <img src="https://i.ibb.co/0ts8L6D/logo192.png" alt="Logo" width="64" height="64">
+  </a>
+  <h3 align="center">Hush-Hush Password Wallet</h3>
+</div>
+</br>
+
 You can import credentials data in csv file fromat.
 
 ### Format
