@@ -21,8 +21,6 @@
   <p align="center">
     A personal password wallet!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
     <br />
     <a href="https://github.com/afraz-khan/hush-hush/issues">Report Bug</a>
     ·
