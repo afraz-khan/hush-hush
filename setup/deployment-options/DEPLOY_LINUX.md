@@ -77,4 +77,5 @@ sudo apt install git python3 python3-pip python3-venv nodejs npm tmux
    You can serve the flask app behind an nginx server. Look for step 6 of [this](https://faun.pub/deploy-flask-app-with-nginx-using-gunicorn-7fda4f50066a) document to configure nginx but application works without that.
 </br>
 </br>
+
 ---
