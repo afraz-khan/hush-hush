@@ -91,6 +91,8 @@ Find the deployment options below that are used to test this project so far.
 * [Deploy on Linux Server](https://github.com/afraz-khan/hush-hush/blob/main/setup/deployment-options/DEPLOY_LINUX.md)
 * [Deploy on Heroku](https://github.com/afraz-khan/hush-hush/blob/main/setup/deployment-options/DEPLOY_HEROKU.md)
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
