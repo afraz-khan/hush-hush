@@ -30,7 +30,7 @@ class Auth:
 		"""
 		
 		payload = {
-			'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
+			'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=20),
 			'iat': datetime.datetime.utcnow(),
 			'sub': os.environ['HUSHHUSH_AUTH_JWT_SUB']
 		}
