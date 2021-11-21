@@ -40,7 +40,7 @@ Hush-Hush is a web based personal password wallet solution that is used to manag
 
 
 * [Flask](https://flask.palletsprojects.com/)
-* [React.js](https://reactjs.org/)
+* [Reactjs](https://reactjs.org/)
 * [Bootstrap](https://getbootstrap.com)
 
 
