@@ -228,6 +228,7 @@ I've included a few of my favorites to kick things off!
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [PyCryptodome](https://pycryptodome.readthedocs.io/)
+* [PyCryptography](https://cryptography.io/en/latest/)
 * [React CSV](https://www.npmjs.com/package/react-csv)
 * [Font Awesome](https://fontawesome.com/)
 * [Flaticon](https://www.flaticon.com/)
