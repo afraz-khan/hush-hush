@@ -44,8 +44,8 @@
     <li>
       <a href="#Deployment">Deployment</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#linux-server">Deploy on a Linux Server</a></li>
+        <li><a href="#heroku"></a>Deploy on Heroku</li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -79,7 +79,7 @@ Hush-Hush is a web based personal password wallet solution that is used to manag
 ### Features
 - 100% data encryption at rest
 - Interactive GUI
-- Easily deployable
+- Easy deployment
 - Complete control of the wallet
 - Export credentials
 - Import credentials (see format [here](https://github.com/afraz-khan/hush-hush/tree/develop/setup/import-format))
@@ -89,7 +89,8 @@ Hush-Hush is a web based personal password wallet solution that is used to manag
 <!-- GETTING STARTED -->
 ## Deployment
 
-Backend of the project is built with flask and python cryptography tools like [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/). Frontend is built using reactjs. This project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html). Frontend react code resides in the folder named `client` and build of that is used as the static assests folder to flask app.
+Backend of the project is built with flask and python cryptography tools [cryptography](https://cryptography.io/), [pycryptodome](https://pycryptodome.readthedocs.io/). Frontend is built using reactjs and react project named `client`. Build of react project is used as the static assests folder to flask app. Project can be deployed same as any other flask app. See all deployment options [here](https://flask.palletsprojects.com/en/2.0.x/deploying/index.html).
+Find the deployment options below that are used to test this project so far.
 
 
 ### Prerequisites
