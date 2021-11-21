@@ -48,9 +48,8 @@ sudo apt install git python3 python3-pip python3-venv nodejs npm tmux
    * creates required environment keys for your wallet
    * sets required application config params
    * creates react build
-  
-  </br>
-  
+   </br>
+    
     > If script is stuck due to some error or you want to change something then run the script again. If you are unable to resolve the issue then feel free to contact. I am more than happy to help :).
 
 4. Use `tmux` to create a new terminal session for your wallet application. That session would run in background so that you can work simultaneously in other terminal sessions on the server.
