@@ -216,10 +216,8 @@ Distributed under the BSD License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@afrazkhan_](https://twitter.com/afrazkhan_)
-
-Email: afrazkhan@pm.me
-
+Your Name - [@afrazkhan_](https://twitter.com/afrazkhan_)  
+Email: afrazkhan@pm.me  
 Project Link: [https://github.com/afraz-khan/hush-hush](https://github.com/afraz-khan/hush-hush)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
