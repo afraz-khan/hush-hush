@@ -11,7 +11,7 @@
 </br>
 
 # Deploy on Linux Server
-_<small> ✋ ( I tested this method on `Amazon EC2` ) </small>_
+_<small> ✋ ( I tested this method on `Ubuntu (Amazon EC2)` ) </small>_
 
 ### Prerequisites
 Spin-up a linux server(ubuntu recommended) where you want to deploy your password wallet and do not use that server for any other purposes but to be used as your password wallet only.
