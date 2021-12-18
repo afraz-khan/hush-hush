@@ -3,12 +3,12 @@ import logo from '../../images/logo64.png';
 import Footer from '../Footer';
 import { login } from '../../js/util';
 import PasswordEye from '../PasswordEye';
-import { AlertContext } from '../AlertContext';
 import Spinner from '../Spinner';
 import '../../css/login.css';
+import { useAlert } from '../AlertContext';
 
 export default function Login({ setToken }) {
-  const [alert, hideAlert, showAlert] = useContext(AlertContext);
+  const [alert, hideAlert, showAlert] = useAlert();
   const [username, setUsername] = useState();
   const [master_secret, setMasterSecret] = useState();
   const spinnerRef = useRef(null);
@@ -63,7 +63,7 @@ export default function Login({ setToken }) {
         </form>
         <Spinner spinner={spinnerRef} />
       </div>
-      <Footer></Footer>
+      <Footer/>
     </div>
   );
 }

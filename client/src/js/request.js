@@ -1,21 +1,9 @@
 // import params from '../params.json';
 
 function createQueryString(queryParams = {}) {
-  let queryString = '?';
-  let i = -1;
-
-  for (let key of Object.keys(queryParams)) {
-    queryString += `${key}=${queryParams[key]}`;
-    i = i + 1;
-    if (i < Object.keys(queryParams).length - 1) {
-      queryString += '&';
-    }
-  }
-
-  if (i > -1) {
-    return queryString;
-  }
-  return '';
+  const searchParams = new URLSearchParams(queryParams);
+  const queryString = params.toString();
+  return queryString ? `?${queryString}`: '';
 }
 
 async function ajaxRequest(

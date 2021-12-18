@@ -57,3 +57,7 @@ export const AlertContextProvider = ({ children }) => {
     </AlertContext.Provider>
   );
 };
+
+export function useAlert() {
+  return React.useContext(AlertContext);
+}
